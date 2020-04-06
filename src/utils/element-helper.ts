@@ -18,6 +18,14 @@ export const ElementHelper = {
   },
 
   /**
+   * Get all elements by css
+   * @param {String} className
+   */
+  getAllElementsByCss(cssName) {
+    return element.all(by.css(cssName));
+  },
+
+  /**
    * Get element by css
    * @param {String} css
    */
@@ -171,5 +179,5 @@ export const ElementHelper = {
   getInputElementByType(type) {
     const xPath = `//input[@type="${type}"]`;
     return this.getElementByXPath(xPath);
-  }
+  },
 };

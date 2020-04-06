@@ -1,7 +1,7 @@
 {
-  "name": "topcoder-ui-testing-lib",
+  "name": "topcoder-testing-lib",
   "version": "1.0.0",
-  "description": "Topcoder UI Tetsing Library",
+  "description": "Topcoder Testing Library",
   "main": "dist/src/index.js",
   "types": "dist/src/index.d.ts",
   "dependencies": {

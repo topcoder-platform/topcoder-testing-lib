@@ -10,6 +10,11 @@ export declare const ElementHelper: {
      */
     getAllElementsByClassName(className: any): import("protractor").ElementArrayFinder;
     /**
+     * Get all elements by css
+     * @param {String} className
+     */
+    getAllElementsByCss(cssName: any): import("protractor").ElementArrayFinder;
+    /**
      * Get element by css
      * @param {String} css
      */
