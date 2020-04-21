@@ -35,8 +35,10 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var protractor_1 = require("protractor");
+var appconfig = require("../../app-config.json");
 var logger_1 = require("../../logger/logger");
+var assertions_helper_1 = require("./assertions-helper");
+var browser_helper_1 = require("./browser-helper");
 var element_helper_1 = require("./element-helper");
 exports.CommonHelper = {
     /**
@@ -89,11 +91,11 @@ exports.CommonHelper = {
             var pageTitle;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, protractor_1.browser.getTitle()];
+                    case 0: return [4 /*yield*/, browser_helper_1.BrowserHelper.getTitle()];
                     case 1:
                         pageTitle = _a.sent();
                         logger_1.logger.info("Current page title is " + pageTitle);
-                        expect(pageTitle).toEqual(title, "Provided title " + title + " does not match page title " + pageTitle);
+                        assertions_helper_1.AssertionsHelper.expectToBeEqual(pageTitle, title, "Provided title " + title + " does not match page title " + pageTitle);
                         return [2 /*return*/];
                 }
             });
@@ -108,11 +110,11 @@ exports.CommonHelper = {
             var currentUrl;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, protractor_1.browser.getCurrentUrl()];
+                    case 0: return [4 /*yield*/, browser_helper_1.BrowserHelper.getCurrentUrl()];
                     case 1:
                         currentUrl = _a.sent();
                         logger_1.logger.info("Current page url is " + currentUrl);
-                        expect(url).toEqual(currentUrl, "Provided url " + url + " does not match current url " + currentUrl);
+                        assertions_helper_1.AssertionsHelper.expectToBeEqual(url, currentUrl, "Provided title " + url + " does not match page title " + currentUrl);
                         return [2 /*return*/];
                 }
             });
@@ -126,17 +128,17 @@ exports.CommonHelper = {
             var windows;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, protractor_1.browser.getAllWindowHandles()];
+                    case 0: return [4 /*yield*/, browser_helper_1.BrowserHelper.getAllWindowHandles()];
                     case 1:
                         windows = _a.sent();
-                        expect(windows.length).toBe(2, "Popup window did not open");
-                        return [4 /*yield*/, protractor_1.browser.switchTo().window(windows[1])];
+                        assertions_helper_1.AssertionsHelper.expectToBeSame(windows.length, 2, "Popup window did not open");
+                        return [4 /*yield*/, browser_helper_1.BrowserHelper.switchTo(windows[1])];
                     case 2:
                         _a.sent();
-                        return [4 /*yield*/, protractor_1.browser.close()];
+                        return [4 /*yield*/, browser_helper_1.BrowserHelper.close()];
                     case 3:
                         _a.sent();
-                        return [4 /*yield*/, protractor_1.browser.switchTo().window(windows[0])];
+                        return [4 /*yield*/, browser_helper_1.BrowserHelper.switchTo(windows[0])];
                     case 4:
                         _a.sent();
                         return [2 /*return*/];
@@ -148,95 +150,53 @@ exports.CommonHelper = {
      * Verify pop up window's title
      * @param {String} title
      */
-    verifyPopupWindowWithTitle: function (title) {
-        return __awaiter(this, void 0, void 0, function () {
-            var windows, until, windowTitle, popupWindowTitle;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.verifyPopupWindow()];
-                    case 1:
-                        _a.sent();
-                        return [4 /*yield*/, protractor_1.browser.getAllWindowHandles()];
-                    case 2:
-                        windows = _a.sent();
-                        until = protractor_1.protractor.ExpectedConditions;
-                        windowTitle = element_helper_1.ElementHelper.getElementByXPath("//title");
-                        protractor_1.browser.ignoreSynchronization = true;
-                        return [4 /*yield*/, protractor_1.browser.switchTo().window(windows[1])];
-                    case 3:
-                        _a.sent();
-                        return [4 /*yield*/, protractor_1.browser.wait(until.presenceOf(windowTitle))];
-                    case 4:
-                        _a.sent();
-                        return [4 /*yield*/, protractor_1.browser.getTitle()];
-                    case 5:
-                        popupWindowTitle = _a.sent();
-                        expect(popupWindowTitle).toEqual(title, "Provided title " + title + " does not match page title " + popupWindowTitle);
-                        return [4 /*yield*/, protractor_1.browser.close()];
-                    case 6:
-                        _a.sent();
-                        return [4 /*yield*/, protractor_1.browser.switchTo().window(windows[0])];
-                    case 7:
-                        _a.sent();
-                        return [2 /*return*/];
-                }
-            });
-        });
+    /*async verifyPopupWindowWithTitle(title) {
+      await this.verifyPopupWindow();
+      const windows = await browser.getAllWindowHandles();
+      const until = protractor.ExpectedConditions;
+      const windowTitle = ElementHelper.getElementByXPath("//title");
+      browser.ignoreSynchronization = true;
+      await browser.switchTo().window(windows[1]);
+      await browser.wait(until.presenceOf(windowTitle));
+      const popupWindowTitle = await browser.getTitle();
+      expect(popupWindowTitle).toEqual(
+        title,
+        `Provided title ${title} does not match page title ${popupWindowTitle}`
+      );
+      await browser.close();
+      await browser.switchTo().window(windows[0]);
     },
+  
     /**
      * Verify pop up window's url
      * @param {String} expectedUrl
      */
-    verifyPopupWindowWithUrl: function (expectedUrl) {
-        return __awaiter(this, void 0, void 0, function () {
-            var windows, url;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.verifyPopupWindow()];
-                    case 1:
-                        _a.sent();
-                        return [4 /*yield*/, protractor_1.browser.getAllWindowHandles()];
-                    case 2:
-                        windows = _a.sent();
-                        return [4 /*yield*/, protractor_1.browser.switchTo().window(windows[1])];
-                    case 3:
-                        _a.sent();
-                        return [4 /*yield*/, protractor_1.browser.getCurrentUrl()];
-                    case 4:
-                        url = _a.sent();
-                        expect(url).toEqual(expectedUrl, "Provided url " + expectedUrl + " does not match current url " + url);
-                        return [4 /*yield*/, protractor_1.browser.close()];
-                    case 5:
-                        _a.sent();
-                        return [4 /*yield*/, protractor_1.browser.switchTo().window(windows[0])];
-                    case 6:
-                        _a.sent();
-                        return [2 /*return*/];
-                }
-            });
-        });
+    /*async verifyPopupWindowWithUrl(expectedUrl) {
+      await this.verifyPopupWindow();
+      const windows = await browser.getAllWindowHandles();
+      await browser.switchTo().window(windows[1]);
+      const url = await browser.getCurrentUrl();
+      expect(url).toEqual(
+        expectedUrl,
+        `Provided url ${expectedUrl} does not match current url ${url}`
+      );
+      await browser.close();
+      await browser.switchTo().window(windows[0]);
     },
+  
     /**
      * Get anchor element containing text and verify the href in that element
      * @param {String} text
      * @param {String} href
      */
-    verifyHrefInAnchorContainingText: function (text, href) {
-        return __awaiter(this, void 0, void 0, function () {
-            var anchorElement, anchorElementHref;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        anchorElement = element_helper_1.ElementHelper.getTagElementContainingText("a", text);
-                        return [4 /*yield*/, anchorElement.getAttribute("href")];
-                    case 1:
-                        anchorElementHref = _a.sent();
-                        expect(anchorElementHref).toEqual(href, "Provided href " + href + " does not match anchor element href " + anchorElementHref);
-                        return [2 /*return*/];
-                }
-            });
-        });
-    },
+    /*async verifyHrefInAnchorContainingText(text, href) {
+      const anchorElement = ElementHelper.getTagElementContainingText("a", text);
+      const anchorElementHref = await anchorElement.getAttribute("href");
+      expect(anchorElementHref).toEqual(
+        href,
+        `Provided href ${href} does not match anchor element href ${anchorElementHref}`
+      );
+    },  */
     /**
      * Switch tab by opening tab and optionally verify header of new tab
      * @param {String} tag
@@ -248,12 +208,10 @@ exports.CommonHelper = {
         if (newTabHeaderTag === void 0) { newTabHeaderTag = null; }
         if (newTabHeaderText === void 0) { newTabHeaderText = null; }
         return __awaiter(this, void 0, void 0, function () {
-            var until, headerElement;
+            var headerElement;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0:
-                        until = protractor_1.protractor.ExpectedConditions;
-                        return [4 /*yield*/, element_helper_1.ElementHelper.getTagElementContainingText(tag, text).click()];
+                    case 0: return [4 /*yield*/, element_helper_1.ElementHelper.getTagElementContainingText(tag, text).click()];
                     case 1:
                         _a.sent();
                         if (!newTabHeaderTag || !newTabHeaderText) {
@@ -261,7 +219,7 @@ exports.CommonHelper = {
                             return [2 /*return*/];
                         }
                         headerElement = element_helper_1.ElementHelper.getTagElementContainingText(newTabHeaderTag, newTabHeaderText);
-                        return [4 /*yield*/, protractor_1.browser.wait(until.visibilityOf(headerElement))];
+                        return [4 /*yield*/, browser_helper_1.BrowserHelper.waitUntilVisibilityOf(headerElement, appconfig.Timeout.ElementVisibility, "Element did not display within timeout")];
                     case 2:
                         _a.sent();
                         return [2 /*return*/];
@@ -269,24 +227,5 @@ exports.CommonHelper = {
             });
         });
     },
-    /**
-     * Await visibility of element
-     * @param {Element} element
-     */
-    awaitVisibility: function (element) {
-        return __awaiter(this, void 0, void 0, function () {
-            var until;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        until = protractor_1.protractor.ExpectedConditions;
-                        return [4 /*yield*/, protractor_1.browser.wait(until.visibilityOf(element), 5000)];
-                    case 1:
-                        _a.sent();
-                        return [2 /*return*/];
-                }
-            });
-        });
-    }
 };
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY29tbW9uLWhlbHBlci5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3NyYy91dGlscy9jb21tb24taGVscGVyLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7QUFBQSx5Q0FBaUQ7QUFDakQsOENBQTZDO0FBQzdDLG1EQUFpRDtBQUNwQyxRQUFBLFlBQVksR0FBRztJQUMxQjs7O09BR0c7SUFDRyw0QkFBNEIsWUFBQyxJQUFJOzs7Ozs7d0JBQy9CLE9BQU8sR0FBRyw4QkFBYSxDQUFDLHdCQUF3QixDQUFDLElBQUksQ0FBQyxDQUFDO3dCQUM3RCxxQkFBTSxPQUFPLENBQUMsS0FBSyxFQUFFLEVBQUE7O3dCQUFyQixTQUFxQixDQUFDO3dCQUN0QixlQUFNLENBQUMsSUFBSSxDQUFDLHdDQUFzQyxJQUFNLENBQUMsQ0FBQzs7Ozs7S0FDM0Q7SUFFRDs7OztPQUlHO0lBQ0csK0JBQStCLFlBQUMsR0FBRyxFQUFFLElBQUk7Ozs7Ozt3QkFDdkMsT0FBTyxHQUFHLDhCQUFhLENBQUMsMkJBQTJCLENBQUMsR0FBRyxFQUFFLElBQUksQ0FBQyxDQUFDO3dCQUNyRSxxQkFBTSxPQUFPLENBQUMsS0FBSyxFQUFFLEVBQUE7O3dCQUFyQixTQUFxQixDQUFDO3dCQUN0QixlQUFNLENBQUMsSUFBSSxDQUFDLGdCQUFjLEdBQUcsaUNBQTRCLElBQU0sQ0FBQyxDQUFDOzs7OztLQUNsRTtJQUVEOzs7T0FHRztJQUNHLGVBQWUsWUFBQyxLQUFLOzs7Ozs0QkFDUCxxQkFBTSxvQkFBTyxDQUFDLFFBQVEsRUFBRSxFQUFBOzt3QkFBcEMsU0FBUyxHQUFHLFNBQXdCO3dCQUMxQyxlQUFNLENBQUMsSUFBSSxDQUFDLDJCQUF5QixTQUFXLENBQUMsQ0FBQzt3QkFDbEQsTUFBTSxDQUFDLFNBQVMsQ0FBQyxDQUFDLE9BQU8sQ0FDdkIsS0FBSyxFQUNMLG9CQUFrQixLQUFLLG1DQUE4QixTQUFX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
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY29tbW9uLWhlbHBlci5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3NyYy91dGlscy9jb21tb24taGVscGVyLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7QUFBQSxpREFBbUQ7QUFDbkQsOENBQTZDO0FBQzdDLHlEQUF1RDtBQUN2RCxtREFBaUQ7QUFDakQsbURBQWlEO0FBQ3BDLFFBQUEsWUFBWSxHQUFHO0lBQzFCOzs7T0FHRztJQUNHLDRCQUE0QixZQUFDLElBQUk7Ozs7Ozt3QkFDL0IsT0FBTyxHQUFHLDhCQUFhLENBQUMsd0JBQXdCLENBQUMsSUFBSSxDQUFDLENBQUM7d0JBQzdELHFCQUFNLE9BQU8sQ0FBQyxLQUFLLEVBQUUsRUFBQTs7d0JBQXJCLFNBQXFCLENBQUM7d0JBQ3RCLGVBQU0sQ0FBQyxJQUFJLENBQUMsd0NBQXNDLElBQU0sQ0FBQyxDQUFDOzs7OztLQUMzRDtJQUVEOzs7O09BSUc7SUFDRywrQkFBK0IsWUFBQyxHQUFHLEVBQUUsSUFBSTs7Ozs7O3dCQUN2QyxPQUFPLEdBQUcsOEJBQWEsQ0FBQywyQkFBMkIsQ0FBQyxHQUFHLEVBQUUsSUFBSSxDQUFDLENBQUM7d0JBQ3JFLHFCQUFNLE9BQU8sQ0FBQyxLQUFLLEVBQUUsRUFBQTs7d0JBQXJCLFNBQXFCLENBQUM7d0JBQ3RCLGVBQU0sQ0FBQyxJQUFJLENBQUMsZ0JBQWMsR0FBRyxpQ0FBNEIsSUFBTSxDQUFDLENBQUM7Ozs7O0tBQ2xFO0lBRUQ7OztPQUdHO0lBQ0csZUFBZSxZQUFDLEtBQUs7Ozs7OzRCQUNQLHFCQUFNLDhCQUFhLENBQUMsUUFBUSxFQUFFLEVBQUE7O3dCQUExQyxTQUFTLEdBQUcsU0FBOEI7d0JBQ2hELGVBQU0sQ0FBQyxJQUFJLENBQUMsMkJBQXlCLFNBQVcsQ0FBQyxDQUFDO3dCQUNsRCxvQ0FBZ0IsQ0FBQyxlQUFlLENBQzlCLFNBQVMsRUFDVCxLQUFLLEVBQ0wsb0JBQWtCLEtBQUssbUNBQThCLFNBQVcsQ0FDakUsQ0FBQzs7Ozs7S0FDSDtJQUVEOzs7T0FHRztJQUNHLGdCQUFnQixZQUFDLEdBQUc7Ozs7OzRCQUNMLHFCQUFNLDhCQUFhLENBQUMsYUFBYSxFQUFFLEVBQUE7O3dCQUFoRCxVQUFVLEdBQUcsU0FBbUM7d0JBQ3RELGVBQU0sQ0FBQyxJQUFJLENBQUMseUJBQXVCLFVBQVksQ0FBQyxDQUFDO3dCQUNqRCxvQ0FBZ0IsQ0FBQyxlQUFlLENBQzlCLEdBQUcsRUFDSCxVQUFVLEVBQ1Ysb0JBQWtCLEdBQUcsbUNBQThCLFVBQVksQ0FDaEUsQ0FBQzs7Ozs7S0FDSDtJQUVEOztPQUVHO0lBQ0csaUJBQWlCOzs7Ozs0QkFDTCxxQkFBTSw4QkFBYSxDQUFDLG1CQUFtQixFQUFFLEVBQUE7O3dCQUFuRCxPQUFPLEdBQUcsU0FBeUM7d0JBQ3pELG9DQUFnQixDQUFDLGNBQWMsQ0FDN0IsT0FBTyxDQUFDLE1BQU0sRUFDZCxDQUFDLEVBQ0QsMkJBQTJCLENBQzVCLENBQUM7d0JBQ0YscUJBQU0sOEJBQWEsQ0FBQyxRQUFRLENBQUMsT0FBTyxDQUFDLENBQUMsQ0FBQyxDQUFDLEVBQUE7O3dCQUF4QyxTQUF3QyxDQUFDO3dCQUN6QyxxQkFBTSw4QkFBYSxDQUFDLEtBQUssRUFBRSxFQUFBOzt3QkFBM0IsU0FBMkIsQ0FBQzt3QkFDNUIscUJBQU0sOEJBQWEsQ0FBQyxRQUFRLENBQUMsT0FBTyxDQUFDLENBQUMsQ0FBQyxDQUFDLEVBQUE7O3dCQUF4QyxTQUF3QyxDQUFDOzs7OztLQUMxQztJQUVEOzs7T0FHRztJQUNIOzs7Ozs7Ozs7Ozs7Ozs7Ozs7OztPQW9CRztJQUNIOzs7Ozs7Ozs7Ozs7Ozs7OztPQWlCRztJQUNIOzs7Ozs7O1VBT007SUFFTjs7Ozs7O09BTUc7SUFDRyxnQ0FBZ0MsWUFDcEMsR0FBRyxFQUNILElBQUksRUFDSixlQUFzQixFQUN0QixnQkFBdUI7UUFEdkIsZ0NBQUEsRUFBQSxzQkFBc0I7UUFDdEIsaUNBQUEsRUFBQSx1QkFBdUI7Ozs7OzRCQUV2QixxQkFBTSw4QkFBYSxDQUFDLDJCQUEyQixDQUFDLEdBQUcsRUFBRSxJQUFJLENBQUMsQ0FBQyxLQUFLLEVBQUUsRUFBQTs7d0JBQWxFLFNBQWtFLENBQUM7d0JBRW5FLElBQUksQ0FBQyxlQUFlLElBQUksQ0FBQyxnQkFBZ0IsRUFBRTs0QkFDekMsbUNBQW1DOzRCQUNuQyxzQkFBTzt5QkFDUjt3QkFDSyxhQUFhLEdBQUcsOEJBQWEsQ0FBQywyQkFBMkIsQ0FDN0QsZUFBZSxFQUNmLGdCQUFnQixDQUNqQixDQUFDO3dCQUNGLHFCQUFNLDhCQUFhLENBQUMscUJBQXFCLENBQ3ZDLGFBQWEsRUFDYixTQUFTLENBQUMsT0FBTyxDQUFDLGlCQUFpQixFQUNuQyx3Q0FBd0MsQ0FDekMsRUFBQTs7d0JBSkQsU0FJQyxDQUFDOzs7OztLQUNIO0NBQ0YsQ0FBQyJ9

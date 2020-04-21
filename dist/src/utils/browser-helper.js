@@ -42,15 +42,16 @@ exports.BrowserHelper = {
      * @param {String} url
      */
     open: function (url) {
-        protractor_1.browser.get(url);
-    },
-    /**
-     * initialize the browser
-     */
-    initialize: function () {
-        exports.BrowserHelper.restart();
-        protractor_1.browser.driver.manage().window().maximize();
-        exports.BrowserHelper.setIgnoreSync(true); // This is set  to false when accessing Non Angular Pages.
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, protractor_1.browser.get(url)];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
     },
     /**
      * Set Browser ignoreSynchronization value
@@ -62,21 +63,96 @@ exports.BrowserHelper = {
      * restart the browser
      */
     restart: function () {
-        protractor_1.browser.restart();
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, protractor_1.browser.restart()];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    },
+    /**
+     * close the browser
+     */
+    close: function () {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, protractor_1.browser.close()];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    },
+    /**
+     * maximize
+     */
+    maximize: function () {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, protractor_1.browser.driver.manage().window().maximize()];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    },
+    /**
+     * implicitly wait
+     * @param {number} sec
+     */
+    implicitlyWait: function (sec) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, protractor_1.browser.manage().timeouts().implicitlyWait(sec)];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    },
+    /**
+     * initialize the browser
+     */
+    initialize: function () {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, exports.BrowserHelper.restart()];
+                    case 1:
+                        _a.sent();
+                        return [4 /*yield*/, exports.BrowserHelper.maximize()];
+                    case 2:
+                        _a.sent();
+                        exports.BrowserHelper.setIgnoreSync(true); // This is set  to false when accessing Non Angular Pages.
+                        return [2 /*return*/];
+                }
+            });
+        });
     },
     /**
      * Wait until the visibility of the given element
-     * @param {ElementFinder} element
+     * @param {TCElementImpl} tcElement
      * @param {nember} timeout
      * @param {string} message
      */
-    waitUntilVisibilityOf: function (element, timeout, message) {
+    waitUntilVisibilityOf: function (tcElement, timeout, message) {
         return __awaiter(this, void 0, void 0, function () {
-            var until;
+            var until, element;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         until = protractor_1.protractor.ExpectedConditions;
+                        element = tcElement.getElement();
                         return [4 /*yield*/, protractor_1.browser.wait(until.visibilityOf(element), timeout, message)];
                     case 1:
                         _a.sent();
@@ -87,17 +163,18 @@ exports.BrowserHelper = {
     },
     /**
      * Wait until the visibility of the given element
-     * @param {ElementFinder} element
+     * @param {TCElementImpl} tcElement
      * @param {nember} timeout
      * @param {string} message
      */
-    waitUntilInvisibilityOf: function (element, timeout, message) {
+    waitUntilInvisibilityOf: function (tcElement, timeout, message) {
         return __awaiter(this, void 0, void 0, function () {
-            var until;
+            var until, element;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         until = protractor_1.protractor.ExpectedConditions;
+                        element = tcElement.getElement();
                         return [4 /*yield*/, protractor_1.browser.wait(until.invisibilityOf(element), timeout, message)];
                     case 1:
                         _a.sent();
@@ -108,17 +185,18 @@ exports.BrowserHelper = {
     },
     /**
      * Wait until the presence of the given element
-     * @param {ElementFinder} element
+     * @param {TCElementImpl} tcElement
      * @param {nember} timeout
      * @param {string} message
      */
-    waitUntilPresenceOf: function (element, timeout, message) {
+    waitUntilPresenceOf: function (tcElement, timeout, message) {
         return __awaiter(this, void 0, void 0, function () {
-            var until;
+            var until, element;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         until = protractor_1.protractor.ExpectedConditions;
+                        element = tcElement.getElement();
                         return [4 /*yield*/, protractor_1.browser.wait(until.presenceOf(element), timeout, message)];
                     case 1:
                         _a.sent();
@@ -129,17 +207,18 @@ exports.BrowserHelper = {
     },
     /**
      * Wait until the element is clickable
-     * @param {ElementFinder} element
+     * @param {TCElementImpl} tcElement
      * @param {nember} timeout
      * @param {string} message
      */
-    waitUntilElementToBeClickable: function (element, timeout, message) {
+    waitUntilElementToBeClickable: function (tcElement, timeout, message) {
         return __awaiter(this, void 0, void 0, function () {
-            var until;
+            var until, element;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         until = protractor_1.protractor.ExpectedConditions;
+                        element = tcElement.getElement();
                         return [4 /*yield*/, protractor_1.browser.wait(until.elementToBeClickable(element), timeout, message)];
                     case 1:
                         _a.sent();
@@ -148,5 +227,51 @@ exports.BrowserHelper = {
             });
         });
     },
+    /**
+     * Get Title
+     */
+    getTitle: function () {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/, protractor_1.browser.getTitle()];
+            });
+        });
+    },
+    /**
+     * Get Current URL
+     */
+    getCurrentUrl: function () {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/, protractor_1.browser.getCurrentUrl()];
+            });
+        });
+    },
+    /**
+     * Get All Window Handles
+     */
+    getAllWindowHandles: function () {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/, protractor_1.browser.getAllWindowHandles()];
+            });
+        });
+    },
+    /**
+     * Switch Window
+     * @param {Window} window
+     */
+    switchTo: function (window) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, protractor_1.browser.switchTo().window(window)];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    },
 };
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiYnJvd3Nlci1oZWxwZXIuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi8uLi8uLi9zcmMvdXRpbHMvYnJvd3Nlci1oZWxwZXIudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7OztBQUFBLHlDQUFnRTtBQUVuRCxRQUFBLGFBQWEsR0FBRztJQUMzQjs7O09BR0c7SUFDSCxJQUFJLFlBQUMsR0FBRztRQUNOLG9CQUFPLENBQUMsR0FBRyxDQUFDLEdBQUcsQ0FBQyxDQUFDO0lBQ25CLENBQUM7SUFFRDs7T0FFRztJQUNILFVBQVU7UUFDUixxQkFBYSxDQUFDLE9BQU8sRUFBRSxDQUFDO1FBQ3hCLG9CQUFPLENBQUMsTUFBTSxDQUFDLE1BQU0sRUFBRSxDQUFDLE1BQU0sRUFBRSxDQUFDLFFBQVEsRUFBRSxDQUFDO1FBQzVDLHFCQUFhLENBQUMsYUFBYSxDQUFDLElBQUksQ0FBQyxDQUFDLENBQUMsMERBQTBEO0lBQy9GLENBQUM7SUFFRDs7T0FFRztJQUNILGFBQWEsRUFBYixVQUFjLElBQWE7UUFDekIsb0JBQU8sQ0FBQyxxQkFBcUIsR0FBRyxJQUFJLENBQUM7SUFDdkMsQ0FBQztJQUVEOztPQUVHO0lBQ0gsT0FBTztRQUNMLG9CQUFPLENBQUMsT0FBTyxFQUFFLENBQUM7SUFDcEIsQ0FBQztJQUVEOzs7OztPQUtHO0lBQ0cscUJBQXFCLEVBQTNCLFVBQ0UsT0FBc0IsRUFDdEIsT0FBZSxFQUNmLE9BQWU7Ozs7Ozt3QkFFVCxLQUFLLEdBQUcsdUJBQVUsQ0FBQyxrQkFBa0IsQ0FBQzt3QkFDNUMscUJBQU0sb0JBQU8sQ0FBQyxJQUFJLENBQUMsS0FBSyxDQUFDLFlBQVksQ0FBQyxPQUFPLENBQUMsRUFBRSxPQUFPLEVBQUUsT0FBTyxDQUFDLEVBQUE7O3dCQUFqRSxTQUFpRSxDQUFDOzs7OztLQUNuRTtJQUVEOzs7OztPQUtHO0lBQ0csdUJBQXVCLEVBQTdCLFVBQ0UsT0FBc0IsRUFDdEIsT0FBZSxFQUNmLE9BQWU7Ozs7Ozt3QkFFVCxLQUFLLEdBQUcsdUJBQVUsQ0FBQyxrQkFBa0IsQ0FBQzt3QkFDNUMscUJBQU0sb0JBQU8sQ0FBQyxJQUFJLENBQUMsS0FBSyxDQUFDLGNBQWMsQ0FBQyxPQUFPLENBQUMsRUFBRSxPQUFPLEVBQUUsT0FBTyxDQUFDLEVBQUE7O3dCQUFuRSxTQUFtRSxDQUFDOzs7OztLQUNyRTtJQUVEOzs7OztPQUtHO0lBQ0csbUJBQW1CLEVBQXpCLFVBQ0UsT0FBc0IsRUFDdEIsT0FBZSxFQUNmLE9BQWU7Ozs7Ozt3QkFFVCxLQUFLLEdBQUcsdUJBQVUsQ0FBQyxrQkFBa0IsQ0FBQzt3QkFDNUMscUJBQU0sb0JBQU8sQ0FBQyxJQUFJLENBQUMsS0FBSyxDQUFDLFVBQVUsQ0FBQyxPQUFPLENBQUMsRUFBRSxPQUFPLEVBQUUsT0FBTyxDQUFDLEVBQUE7O3dCQUEvRCxTQUErRCxDQUFDOzs7OztLQUNqRTtJQUVEOzs7OztPQUtHO0lBQ0csNkJBQTZCLEVBQW5DLFVBQ0UsT0FBc0IsRUFDdEIsT0FBZSxFQUNmLE9BQWU7Ozs7Ozt3QkFFVCxLQUFLLEdBQUcsdUJBQVUsQ0FBQyxrQkFBa0IsQ0FBQzt3QkFDNUMscUJBQU0sb0JBQU8sQ0FBQyxJQUFJLENBQUMsS0FBSyxDQUFDLG9CQUFvQixDQUFDLE9BQU8sQ0FBQyxFQUFFLE9BQU8sRUFBRSxPQUFPLENBQUMsRUFBQTs7d0JBQXpFLFNBQXlFLENBQUM7Ozs7O0tBQzNFO0NBQ0YsQ0FBQyJ9
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiYnJvd3Nlci1oZWxwZXIuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi8uLi8uLi9zcmMvdXRpbHMvYnJvd3Nlci1oZWxwZXIudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7OztBQUFBLHlDQUFnRTtBQUduRCxRQUFBLGFBQWEsR0FBRztJQUMzQjs7O09BR0c7SUFDRyxJQUFJLFlBQUMsR0FBRzs7Ozs0QkFDWixxQkFBTSxvQkFBTyxDQUFDLEdBQUcsQ0FBQyxHQUFHLENBQUMsRUFBQTs7d0JBQXRCLFNBQXNCLENBQUM7Ozs7O0tBQ3hCO0lBRUQ7O09BRUc7SUFDSCxhQUFhLEVBQWIsVUFBYyxJQUFhO1FBQ3pCLG9CQUFPLENBQUMscUJBQXFCLEdBQUcsSUFBSSxDQUFDO0lBQ3ZDLENBQUM7SUFFRDs7T0FFRztJQUNHLE9BQU87Ozs7NEJBQ1gscUJBQU0sb0JBQU8sQ0FBQyxPQUFPLEVBQUUsRUFBQTs7d0JBQXZCLFNBQXVCLENBQUM7Ozs7O0tBQ3pCO0lBRUQ7O09BRUc7SUFDRyxLQUFLOzs7OzRCQUNULHFCQUFNLG9CQUFPLENBQUMsS0FBSyxFQUFFLEVBQUE7O3dCQUFyQixTQUFxQixDQUFDOzs7OztLQUN2QjtJQUVEOztPQUVHO0lBQ0csUUFBUTs7Ozs0QkFDWixxQkFBTSxvQkFBTyxDQUFDLE1BQU0sQ0FBQyxNQUFNLEVBQUUsQ0FBQyxNQUFNLEVBQUUsQ0FBQyxRQUFRLEVBQUUsRUFBQTs7d0JBQWpELFNBQWlELENBQUM7Ozs7O0tBQ25EO0lBRUQ7OztPQUdHO0lBQ0csY0FBYyxZQUFDLEdBQUc7Ozs7NEJBQ3RCLHFCQUFNLG9CQUFPLENBQUMsTUFBTSxFQUFFLENBQUMsUUFBUSxFQUFFLENBQUMsY0FBYyxDQUFDLEdBQUcsQ0FBQyxFQUFBOzt3QkFBckQsU0FBcUQsQ0FBQzs7Ozs7S0FDdkQ7SUFFRDs7T0FFRztJQUNHLFVBQVU7Ozs7NEJBQ2QscUJBQU0scUJBQWEsQ0FB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

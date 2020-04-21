@@ -1,14 +1,10 @@
-import { ElementFinder } from "protractor";
+import { TCElementImpl } from "../TCElementImpl";
 export declare const BrowserHelper: {
     /**
      * opens the given url in the browser
      * @param {String} url
      */
-    open(url: any): void;
-    /**
-     * initialize the browser
-     */
-    initialize(): void;
+    open(url: any): Promise<void>;
     /**
      * Set Browser ignoreSynchronization value
      */
@@ -16,33 +12,67 @@ export declare const BrowserHelper: {
     /**
      * restart the browser
      */
-    restart(): void;
+    restart(): Promise<void>;
+    /**
+     * close the browser
+     */
+    close(): Promise<void>;
+    /**
+     * maximize
+     */
+    maximize(): Promise<void>;
+    /**
+     * implicitly wait
+     * @param {number} sec
+     */
+    implicitlyWait(sec: any): Promise<void>;
+    /**
+     * initialize the browser
+     */
+    initialize(): Promise<void>;
     /**
      * Wait until the visibility of the given element
-     * @param {ElementFinder} element
+     * @param {TCElementImpl} tcElement
      * @param {nember} timeout
      * @param {string} message
      */
-    waitUntilVisibilityOf(element: ElementFinder, timeout: number, message: string): Promise<void>;
+    waitUntilVisibilityOf(tcElement: TCElementImpl, timeout: number, message: string): Promise<void>;
     /**
      * Wait until the visibility of the given element
-     * @param {ElementFinder} element
+     * @param {TCElementImpl} tcElement
      * @param {nember} timeout
      * @param {string} message
      */
-    waitUntilInvisibilityOf(element: ElementFinder, timeout: number, message: string): Promise<void>;
+    waitUntilInvisibilityOf(tcElement: TCElementImpl, timeout: number, message: string): Promise<void>;
     /**
      * Wait until the presence of the given element
-     * @param {ElementFinder} element
+     * @param {TCElementImpl} tcElement
      * @param {nember} timeout
      * @param {string} message
      */
-    waitUntilPresenceOf(element: ElementFinder, timeout: number, message: string): Promise<void>;
+    waitUntilPresenceOf(tcElement: TCElementImpl, timeout: number, message: string): Promise<void>;
     /**
      * Wait until the element is clickable
-     * @param {ElementFinder} element
+     * @param {TCElementImpl} tcElement
      * @param {nember} timeout
      * @param {string} message
      */
-    waitUntilElementToBeClickable(element: ElementFinder, timeout: number, message: string): Promise<void>;
+    waitUntilElementToBeClickable(tcElement: TCElementImpl, timeout: number, message: string): Promise<void>;
+    /**
+     * Get Title
+     */
+    getTitle(): Promise<string>;
+    /**
+     * Get Current URL
+     */
+    getCurrentUrl(): Promise<string>;
+    /**
+     * Get All Window Handles
+     */
+    getAllWindowHandles(): Promise<string[]>;
+    /**
+     * Switch Window
+     * @param {Window} window
+     */
+    switchTo(window: any): Promise<void>;
 };

@@ -1,5 +1,7 @@
-import { browser, protractor } from "protractor";
+import * as appconfig from "../../app-config.json";
 import { logger } from "../../logger/logger";
+import { AssertionsHelper } from "./assertions-helper";
+import { BrowserHelper } from "./browser-helper";
 import { ElementHelper } from "./element-helper";
 export const CommonHelper = {
   /**
@@ -28,9 +30,10 @@ export const CommonHelper = {
    * @param {String} title
    */
   async verifyPageTitle(title) {
-    const pageTitle = await browser.getTitle();
+    const pageTitle = await BrowserHelper.getTitle();
     logger.info(`Current page title is ${pageTitle}`);
-    expect(pageTitle).toEqual(
+    AssertionsHelper.expectToBeEqual(
+      pageTitle,
       title,
       `Provided title ${title} does not match page title ${pageTitle}`
     );
@@ -41,11 +44,12 @@ export const CommonHelper = {
    * @param {String} url
    */
   async verifyCurrentUrl(url) {
-    const currentUrl = await browser.getCurrentUrl();
+    const currentUrl = await BrowserHelper.getCurrentUrl();
     logger.info(`Current page url is ${currentUrl}`);
-    expect(url).toEqual(
+    AssertionsHelper.expectToBeEqual(
+      url,
       currentUrl,
-      `Provided url ${url} does not match current url ${currentUrl}`
+      `Provided title ${url} does not match page title ${currentUrl}`
     );
   },
 
@@ -53,18 +57,22 @@ export const CommonHelper = {
    * Verify pop window exists
    */
   async verifyPopupWindow() {
-    const windows = await browser.getAllWindowHandles();
-    expect(windows.length).toBe(2, "Popup window did not open");
-    await browser.switchTo().window(windows[1]);
-    await browser.close();
-    await browser.switchTo().window(windows[0]);
+    const windows = await BrowserHelper.getAllWindowHandles();
+    AssertionsHelper.expectToBeSame(
+      windows.length,
+      2,
+      "Popup window did not open"
+    );
+    await BrowserHelper.switchTo(windows[1]);
+    await BrowserHelper.close();
+    await BrowserHelper.switchTo(windows[0]);
   },
 
   /**
    * Verify pop up window's title
    * @param {String} title
    */
-  async verifyPopupWindowWithTitle(title) {
+  /*async verifyPopupWindowWithTitle(title) {
     await this.verifyPopupWindow();
     const windows = await browser.getAllWindowHandles();
     const until = protractor.ExpectedConditions;
@@ -85,7 +93,7 @@ export const CommonHelper = {
    * Verify pop up window's url
    * @param {String} expectedUrl
    */
-  async verifyPopupWindowWithUrl(expectedUrl) {
+  /*async verifyPopupWindowWithUrl(expectedUrl) {
     await this.verifyPopupWindow();
     const windows = await browser.getAllWindowHandles();
     await browser.switchTo().window(windows[1]);
@@ -103,14 +111,14 @@ export const CommonHelper = {
    * @param {String} text
    * @param {String} href
    */
-  async verifyHrefInAnchorContainingText(text, href) {
+  /*async verifyHrefInAnchorContainingText(text, href) {
     const anchorElement = ElementHelper.getTagElementContainingText("a", text);
     const anchorElementHref = await anchorElement.getAttribute("href");
     expect(anchorElementHref).toEqual(
       href,
       `Provided href ${href} does not match anchor element href ${anchorElementHref}`
     );
-  },
+  },  */
 
   /**
    * Switch tab by opening tab and optionally verify header of new tab
@@ -125,27 +133,20 @@ export const CommonHelper = {
     newTabHeaderTag = null,
     newTabHeaderText = null
   ) {
-    const until = protractor.ExpectedConditions;
     await ElementHelper.getTagElementContainingText(tag, text).click();
 
     if (!newTabHeaderTag || !newTabHeaderText) {
       // Don't verify header if not given
       return;
     }
-
     const headerElement = ElementHelper.getTagElementContainingText(
       newTabHeaderTag,
       newTabHeaderText
     );
-    await browser.wait(until.visibilityOf(headerElement));
+    await BrowserHelper.waitUntilVisibilityOf(
+      headerElement,
+      appconfig.Timeout.ElementVisibility,
+      "Element did not display within timeout"
+    );
   },
-
-  /**
-   * Await visibility of element
-   * @param {Element} element
-   */
-  async awaitVisibility(element) {
-    const until = protractor.ExpectedConditions;
-    await browser.wait(until.visibilityOf(element), 5000);
-  }
 };

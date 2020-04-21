@@ -1,4 +1,5 @@
-import { by, element } from "protractor";
+import { by, element, ElementArrayFinder } from "protractor";
+import { TCElementImpl } from "../TCElementImpl";
 
 export const ElementHelper = {
   /**
@@ -6,23 +7,25 @@ export const ElementHelper = {
    * @param {String} className
    */
   getElementByClassName(className) {
-    return element(by.className(className));
+    return new TCElementImpl(element(by.className(className)));
   },
 
   /**
    * Get all elements by classname
    * @param {String} className
    */
-  getAllElementsByClassName(className) {
-    return element.all(by.className(className));
+  async getAllElementsByClassName(className) {
+    const list = await element.all(by.className(className));
+    return this.getElementArray(list);
   },
 
   /**
    * Get all elements by css
    * @param {String} className
    */
-  getAllElementsByCss(cssName) {
-    return element.all(by.css(cssName));
+  async getAllElementsByCss(cssName) {
+    const list = await element.all(by.css(cssName));
+    return this.getElementArray(list);
   },
 
   /**
@@ -30,7 +33,7 @@ export const ElementHelper = {
    * @param {String} css
    */
   getElementByCss(css) {
-    return element(by.css(css));
+    return new TCElementImpl(element(by.css(css)));
   },
 
   /**
@@ -38,7 +41,7 @@ export const ElementHelper = {
    * @param {String} id
    */
   getElementById(id) {
-    return element(by.id(id));
+    return new TCElementImpl(element(by.id(id)));
   },
 
   /**
@@ -46,7 +49,7 @@ export const ElementHelper = {
    * @param {String|Function} js
    */
   getElementByJs(js) {
-    return element(by.js(js));
+    return new TCElementImpl(element(by.js(js)));
   },
 
   /**
@@ -54,7 +57,7 @@ export const ElementHelper = {
    * @param {String} name
    */
   getElementByName(name) {
-    return element(by.name(name));
+    return new TCElementImpl(element(by.name(name)));
   },
 
   /**
@@ -62,7 +65,7 @@ export const ElementHelper = {
    * @param {String} text
    */
   getElementByPartialLinkText(text) {
-    return element(by.partialLinkText(text));
+    return new TCElementImpl(element(by.partialLinkText(text)));
   },
 
   /**
@@ -70,7 +73,7 @@ export const ElementHelper = {
    * @param {String} tag
    */
   getElementsByTag(tag) {
-    return element(by.tagName(tag));
+    return new TCElementImpl(element(by.tagName(tag)));
   },
 
   /**
@@ -78,7 +81,7 @@ export const ElementHelper = {
    * @param {String} binding
    */
   getElementByBinding(binding) {
-    return element(by.binding(binding));
+    return new TCElementImpl(element(by.binding(binding)));
   },
 
   /**
@@ -86,7 +89,7 @@ export const ElementHelper = {
    * @param {String} binding
    */
   getElementByExactBinding(binding) {
-    return element(by.exactBinding(binding));
+    return new TCElementImpl(element(by.exactBinding(binding)));
   },
 
   /**
@@ -94,7 +97,7 @@ export const ElementHelper = {
    * @param {String} model
    */
   getElementByModel(model) {
-    return element(by.model(model));
+    return new TCElementImpl(element(by.model(model)));
   },
 
   /**
@@ -102,7 +105,7 @@ export const ElementHelper = {
    * @param {String} text
    */
   getElementByPartialButtonText(text) {
-    return element(by.partialButtonText(text));
+    return new TCElementImpl(element(by.partialButtonText(text)));
   },
 
   /**
@@ -110,7 +113,7 @@ export const ElementHelper = {
    * @param {String} repeater
    */
   getElementByRepeater(repeater) {
-    return element(by.repeater(repeater));
+    return new TCElementImpl(element(by.repeater(repeater)));
   },
 
   /**
@@ -118,7 +121,7 @@ export const ElementHelper = {
    * @param {String} repeater
    */
   getElementByExactRepeater(repeater) {
-    return element(by.exactRepeater(repeater));
+    return new TCElementImpl(element(by.exactRepeater(repeater)));
   },
 
   /**
@@ -127,14 +130,14 @@ export const ElementHelper = {
    * @param {String} text
    */
   getElementByCssContainingText(cssSelector, text) {
-    return element(by.cssContainingText(cssSelector, text));
+    return new TCElementImpl(element(by.cssContainingText(cssSelector, text)));
   },
   /**
    * Get element by options
    * @param {String} options
    */
   getElementByOptions(options) {
-    return element(by.options(options));
+    return new TCElementImpl(element(by.options(options)));
   },
 
   /**
@@ -142,7 +145,7 @@ export const ElementHelper = {
    * @param {String} deepCss
    */
   getElementByDeepCss(deepCss) {
-    return element(by.deepCss(deepCss));
+    return new TCElementImpl(element(by.deepCss(deepCss)));
   },
 
   /**
@@ -150,7 +153,7 @@ export const ElementHelper = {
    * @param {String} xPath
    */
   getElementByXPath(xPath) {
-    return element(by.xpath(xPath));
+    return new TCElementImpl(element(by.xpath(xPath)));
   },
 
   /**
@@ -179,5 +182,18 @@ export const ElementHelper = {
   getInputElementByType(type) {
     const xPath = `//input[@type="${type}"]`;
     return this.getElementByXPath(xPath);
+  },
+
+  /**
+   * Get input element by type
+   * @param {String} type
+   */
+  getElementArray(elementArray: ElementArrayFinder) {
+    const tcElementArray: TCElementImpl[] = [];
+
+    for (let i = 0; i < elementArray.length; i++) {
+      tcElementArray[i] = elementArray[i];
+    }
+    return tcElementArray;
   },
 };

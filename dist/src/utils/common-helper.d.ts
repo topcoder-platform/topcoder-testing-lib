@@ -28,18 +28,6 @@ export declare const CommonHelper: {
      * Verify pop up window's title
      * @param {String} title
      */
-    verifyPopupWindowWithTitle(title: any): Promise<void>;
-    /**
-     * Verify pop up window's url
-     * @param {String} expectedUrl
-     */
-    verifyPopupWindowWithUrl(expectedUrl: any): Promise<void>;
-    /**
-     * Get anchor element containing text and verify the href in that element
-     * @param {String} text
-     * @param {String} href
-     */
-    verifyHrefInAnchorContainingText(text: any, href: any): Promise<void>;
     /**
      * Switch tab by opening tab and optionally verify header of new tab
      * @param {String} tag
@@ -48,9 +36,4 @@ export declare const CommonHelper: {
      * @param {String|Null} newTabHeaderText
      */
     switchTabByClickingOnTagWithText(tag: any, text: any, newTabHeaderTag?: any, newTabHeaderText?: any): Promise<void>;
-    /**
-     * Await visibility of element
-     * @param {Element} element
-     */
-    awaitVisibility(element: any): Promise<void>;
 };
