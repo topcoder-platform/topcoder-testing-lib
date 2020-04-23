@@ -1,9 +1,11 @@
 export default interface TCElement {
-  sendKeys: (text) => void;
-  click: () => void;
-  clear: () => void;
-  getText: () => any;
-  isPresent: () => any;
-  getElement: () => any;
-  setElement: (element) => void;
+  element: any;
+
+  sendKeys(text: any): void;
+  click(): void;
+  clear(): void;
+  getText(): any;
+  isPresent(): any;
+  getElement(): any;
+  setElement(element: any): void;
 }

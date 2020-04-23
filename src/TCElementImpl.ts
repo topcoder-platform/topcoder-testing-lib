@@ -2,7 +2,7 @@ import { ElementFinder } from "protractor";
 import TCElement from "./TCElment";
 
 export class TCElementImpl implements TCElement {
-  private element: ElementFinder;
+  public element: ElementFinder;
 
   /**
    * Constructor
