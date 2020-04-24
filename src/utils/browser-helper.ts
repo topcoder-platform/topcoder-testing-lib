@@ -1,5 +1,5 @@
-import { browser, protractor } from "protractor";
-import { TCElementImpl } from "../TCElementImpl";
+import { browser, protractor, ProtractorExpectedConditions } from "protractor";
+import { TcElementImpl } from "../tc-element-impl";
 
 export const BrowserHelper = {
   /**
@@ -56,67 +56,13 @@ export const BrowserHelper = {
   },
 
   /**
-   * Wait until the visibility of the given element
-   * @param {TCElementImpl} tcElement
+   * Wait until the expected condition
+   * @param {any} condition
    * @param {nember} timeout
    * @param {string} message
    */
-  async waitUntilVisibilityOf(
-    tcElement: TCElementImpl,
-    timeout: number,
-    message: string
-  ) {
-    const until = protractor.ExpectedConditions;
-    const element = tcElement.getElement();
-    await browser.wait(until.visibilityOf(element), timeout, message);
-  },
-
-  /**
-   * Wait until the visibility of the given element
-   * @param {TCElementImpl} tcElement
-   * @param {nember} timeout
-   * @param {string} message
-   */
-  async waitUntilInvisibilityOf(
-    tcElement: TCElementImpl,
-    timeout: number,
-    message: string
-  ) {
-    const until = protractor.ExpectedConditions;
-    const element = tcElement.getElement();
-    await browser.wait(until.invisibilityOf(element), timeout, message);
-  },
-
-  /**
-   * Wait until the presence of the given element
-   * @param {TCElementImpl} tcElement
-   * @param {nember} timeout
-   * @param {string} message
-   */
-  async waitUntilPresenceOf(
-    tcElement: TCElementImpl,
-    timeout: number,
-    message: string
-  ) {
-    const until = protractor.ExpectedConditions;
-    const element = tcElement.getElement();
-    await browser.wait(until.presenceOf(element), timeout, message);
-  },
-
-  /**
-   * Wait until the element is clickable
-   * @param {TCElementImpl} tcElement
-   * @param {nember} timeout
-   * @param {string} message
-   */
-  async waitUntilElementToBeClickable(
-    tcElement: TCElementImpl,
-    timeout: number,
-    message: string
-  ) {
-    const until = protractor.ExpectedConditions;
-    const element = tcElement.getElement();
-    await browser.wait(until.elementToBeClickable(element), timeout, message);
+  async wait(condition: any, timeout: number, message: string) {
+    await browser.wait(condition, timeout, message);
   },
 
   /**

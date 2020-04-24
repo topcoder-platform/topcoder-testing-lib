@@ -1,4 +1,4 @@
-export default interface TCElement {
+export default interface TcElement {
   element: any;
 
   sendKeys(text: any): void;
@@ -7,5 +7,6 @@ export default interface TCElement {
   getText(): any;
   isPresent(): any;
   getElement(): any;
+  getAttribute(attribute: any): any;
   setElement(element: any): void;
 }

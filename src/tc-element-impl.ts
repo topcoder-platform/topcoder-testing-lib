@@ -1,7 +1,7 @@
 import { ElementFinder } from "protractor";
-import TCElement from "./TCElment";
+import TcElement from "./tc-element";
 
-export class TCElementImpl implements TCElement {
+export class TcElementImpl implements TcElement {
   public element: ElementFinder;
 
   /**
@@ -48,6 +48,12 @@ export class TCElementImpl implements TCElement {
     return this.element.isPresent();
   }
 
+  /**
+   * Returns the attribute
+   */
+  public async getAttribute(attribute) {
+    return this.element.getAttribute(attribute);
+  }
   /**
    * Get element
    */

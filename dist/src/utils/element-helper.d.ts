@@ -1,11 +1,11 @@
 import { ElementArrayFinder } from "protractor";
-import { TCElementImpl } from "../TCElementImpl";
+import { TcElementImpl } from "../tc-element-impl";
 export declare const ElementHelper: {
     /**
      * Get element by classname
      * @param {String} className
      */
-    getElementByClassName(className: any): TCElementImpl;
+    getElementByClassName(className: any): TcElementImpl;
     /**
      * Get all elements by classname
      * @param {String} className
@@ -20,83 +20,83 @@ export declare const ElementHelper: {
      * Get element by css
      * @param {String} css
      */
-    getElementByCss(css: any): TCElementImpl;
+    getElementByCss(css: any): TcElementImpl;
     /**
      * Get element by id
      * @param {String} id
      */
-    getElementById(id: any): TCElementImpl;
+    getElementById(id: any): TcElementImpl;
     /**
      * Get element by javascript
      * @param {String|Function} js
      */
-    getElementByJs(js: any): TCElementImpl;
+    getElementByJs(js: any): TcElementImpl;
     /**
      * Get element by name
      * @param {String} name
      */
-    getElementByName(name: any): TCElementImpl;
+    getElementByName(name: any): TcElementImpl;
     /**
      * Get element by partial anchor element text
      * @param {String} text
      */
-    getElementByPartialLinkText(text: any): TCElementImpl;
+    getElementByPartialLinkText(text: any): TcElementImpl;
     /**
      * Get element by html tag
      * @param {String} tag
      */
-    getElementsByTag(tag: any): TCElementImpl;
+    getElementsByTag(tag: any): TcElementImpl;
     /**
      * Get element by binding
      * @param {String} binding
      */
-    getElementByBinding(binding: any): TCElementImpl;
+    getElementByBinding(binding: any): TcElementImpl;
     /**
      * Get element by exact binding
      * @param {String} binding
      */
-    getElementByExactBinding(binding: any): TCElementImpl;
+    getElementByExactBinding(binding: any): TcElementImpl;
     /**
      * Get element by model
      * @param {String} model
      */
-    getElementByModel(model: any): TCElementImpl;
+    getElementByModel(model: any): TcElementImpl;
     /**
      * Get element by button containing substring
      * @param {String} text
      */
-    getElementByPartialButtonText(text: any): TCElementImpl;
+    getElementByPartialButtonText(text: any): TcElementImpl;
     /**
      * Get element by repeater
      * @param {String} repeater
      */
-    getElementByRepeater(repeater: any): TCElementImpl;
+    getElementByRepeater(repeater: any): TcElementImpl;
     /**
      * Get element by exact repeater
      * @param {String} repeater
      */
-    getElementByExactRepeater(repeater: any): TCElementImpl;
+    getElementByExactRepeater(repeater: any): TcElementImpl;
     /**
      * Get element by css containing text
      * @param {String} cssSelector
      * @param {String} text
      */
-    getElementByCssContainingText(cssSelector: any, text: any): TCElementImpl;
+    getElementByCssContainingText(cssSelector: any, text: any): TcElementImpl;
     /**
      * Get element by options
      * @param {String} options
      */
-    getElementByOptions(options: any): TCElementImpl;
+    getElementByOptions(options: any): TcElementImpl;
     /**
      * Get element by deep css
      * @param {String} deepCss
      */
-    getElementByDeepCss(deepCss: any): TCElementImpl;
+    getElementByDeepCss(deepCss: any): TcElementImpl;
     /**
      * Get element by xPath
      * @param {String} xPath
      */
-    getElementByXPath(xPath: any): TCElementImpl;
+    getElementByXPath(xPath: any): TcElementImpl;
     /**
      * Get element containing text
      * @param {String} text
@@ -117,5 +117,5 @@ export declare const ElementHelper: {
      * Get input element by type
      * @param {String} type
      */
-    getElementArray(elementArray: ElementArrayFinder): TCElementImpl[];
+    getElementArray(elementArray: ElementArrayFinder): TcElementImpl[];
 };

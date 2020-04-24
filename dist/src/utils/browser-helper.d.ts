@@ -1,4 +1,3 @@
-import { TCElementImpl } from "../TCElementImpl";
 export declare const BrowserHelper: {
     /**
      * opens the given url in the browser
@@ -31,33 +30,12 @@ export declare const BrowserHelper: {
      */
     initialize(): Promise<void>;
     /**
-     * Wait until the visibility of the given element
-     * @param {TCElementImpl} tcElement
+     * Wait until the expected condition
+     * @param {any} condition
      * @param {nember} timeout
      * @param {string} message
      */
-    waitUntilVisibilityOf(tcElement: TCElementImpl, timeout: number, message: string): Promise<void>;
-    /**
-     * Wait until the visibility of the given element
-     * @param {TCElementImpl} tcElement
-     * @param {nember} timeout
-     * @param {string} message
-     */
-    waitUntilInvisibilityOf(tcElement: TCElementImpl, timeout: number, message: string): Promise<void>;
-    /**
-     * Wait until the presence of the given element
-     * @param {TCElementImpl} tcElement
-     * @param {nember} timeout
-     * @param {string} message
-     */
-    waitUntilPresenceOf(tcElement: TCElementImpl, timeout: number, message: string): Promise<void>;
-    /**
-     * Wait until the element is clickable
-     * @param {TCElementImpl} tcElement
-     * @param {nember} timeout
-     * @param {string} message
-     */
-    waitUntilElementToBeClickable(tcElement: TCElementImpl, timeout: number, message: string): Promise<void>;
+    wait(condition: any, timeout: number, message: string): Promise<void>;
     /**
      * Get Title
      */

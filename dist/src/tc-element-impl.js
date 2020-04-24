@@ -35,12 +35,12 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var TCElementImpl = /** @class */ (function () {
+var TcElementImpl = /** @class */ (function () {
     /**
      * Constructor
      * @param {ElementFinder} elementFinder
      */
-    function TCElementImpl(elementFinder) {
+    function TcElementImpl(elementFinder) {
         this.elementFinder = elementFinder;
         this.element = elementFinder;
     }
@@ -48,7 +48,7 @@ var TCElementImpl = /** @class */ (function () {
      * Send Keys
      * @param {Any} value
      */
-    TCElementImpl.prototype.sendKeys = function (value) {
+    TcElementImpl.prototype.sendKeys = function (value) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
@@ -63,7 +63,7 @@ var TCElementImpl = /** @class */ (function () {
     /**
      * Click element
      */
-    TCElementImpl.prototype.click = function () {
+    TcElementImpl.prototype.click = function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
@@ -78,7 +78,7 @@ var TCElementImpl = /** @class */ (function () {
     /**
      * Clear
      */
-    TCElementImpl.prototype.clear = function () {
+    TcElementImpl.prototype.clear = function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
@@ -93,7 +93,7 @@ var TCElementImpl = /** @class */ (function () {
     /**
      * Get text
      */
-    TCElementImpl.prototype.getText = function () {
+    TcElementImpl.prototype.getText = function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 return [2 /*return*/, this.element.getText()];
@@ -103,7 +103,7 @@ var TCElementImpl = /** @class */ (function () {
     /**
      * Is Present
      */
-    TCElementImpl.prototype.isPresent = function () {
+    TcElementImpl.prototype.isPresent = function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 return [2 /*return*/, this.element.isPresent()];
@@ -111,19 +111,29 @@ var TCElementImpl = /** @class */ (function () {
         });
     };
     /**
+     * Returns the attribute
+     */
+    TcElementImpl.prototype.getAttribute = function (attribute) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/, this.element.getAttribute(attribute)];
+            });
+        });
+    };
+    /**
      * Get element
      */
-    TCElementImpl.prototype.getElement = function () {
+    TcElementImpl.prototype.getElement = function () {
         return this.element;
     };
     /**
      * Set element
      * @param {ElementFinder} elementFinder
      */
-    TCElementImpl.prototype.setElement = function (element) {
+    TcElementImpl.prototype.setElement = function (element) {
         this.element = element;
     };
-    return TCElementImpl;
+    return TcElementImpl;
 }());
-exports.TCElementImpl = TCElementImpl;
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiVENFbGVtZW50SW1wbC5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uL3NyYy9UQ0VsZW1lbnRJbXBsLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7QUFHQTtJQUdFOzs7T0FHRztJQUNILHVCQUFzQixhQUE0QjtRQUE1QixrQkFBYSxHQUFiLGFBQWEsQ0FBZTtRQUNoRCxJQUFJLENBQUMsT0FBTyxHQUFHLGFBQWEsQ0FBQztJQUMvQixDQUFDO0lBRUQ7OztPQUdHO0lBQ1UsZ0NBQVEsR0FBckIsVUFBc0IsS0FBSzs7Ozs0QkFDekIscUJBQU0sSUFBSSxDQUFDLE9BQU8sQ0FBQyxRQUFRLENBQUMsS0FBSyxDQUFDLEVBQUE7O3dCQUFsQyxTQUFrQyxDQUFDOzs7OztLQUNwQztJQUVEOztPQUVHO0lBQ1UsNkJBQUssR0FBbEI7Ozs7NEJBQ0UscUJBQU0sSUFBSSxDQUFDLE9BQU8sQ0FBQyxLQUFLLEVBQUUsRUFBQTs7d0JBQTFCLFNBQTBCLENBQUM7Ozs7O0tBQzVCO0lBRUQ7O09BRUc7SUFDVSw2QkFBSyxHQUFsQjs7Ozs0QkFDRSxxQkFBTSxJQUFJLENBQUMsT0FBTyxDQUFDLEtBQUssRUFBRSxFQUFBOzt3QkFBMUIsU0FBMEIsQ0FBQzs7Ozs7S0FDNUI7SUFFRDs7T0FFRztJQUNVLCtCQUFPLEdBQXBCOzs7Z0JBQ0Usc0JBQU8sSUFBSSxDQUFDLE9BQU8sQ0FBQyxPQUFPLEVBQUUsRUFBQzs7O0tBQy9CO0lBRUQ7O09BRUc7SUFDVSxpQ0FBUyxHQUF0Qjs7O2dCQUNFLHNCQUFPLElBQUksQ0FBQyxPQUFPLENBQUMsU0FBUyxFQUFFLEVBQUM7OztLQUNqQztJQUVEOztPQUVHO0lBQ0ksa0NBQVUsR0FBakI7UUFDRSxPQUFPLElBQUksQ0FBQyxPQUFPLENBQUM7SUFDdEIsQ0FBQztJQUVEOzs7T0FHRztJQUNJLGtDQUFVLEdBQWpCLFVBQWtCLE9BQU87UUFDdkIsSUFBSSxDQUFDLE9BQU8sR0FBRyxPQUFPLENBQUM7SUFDekIsQ0FBQztJQUNILG9CQUFDO0FBQUQsQ0FBQyxBQTdERCxJQTZEQztBQTdEWSxzQ0FBYSJ9
+exports.TcElementImpl = TcElementImpl;
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoidGMtZWxlbWVudC1pbXBsLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vLi4vc3JjL3RjLWVsZW1lbnQtaW1wbC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7O0FBR0E7SUFHRTs7O09BR0c7SUFDSCx1QkFBc0IsYUFBNEI7UUFBNUIsa0JBQWEsR0FBYixhQUFhLENBQWU7UUFDaEQsSUFBSSxDQUFDLE9BQU8sR0FBRyxhQUFhLENBQUM7SUFDL0IsQ0FBQztJQUVEOzs7T0FHRztJQUNVLGdDQUFRLEdBQXJCLFVBQXNCLEtBQUs7Ozs7NEJBQ3pCLHFCQUFNLElBQUksQ0FBQyxPQUFPLENBQUMsUUFBUSxDQUFDLEtBQUssQ0FBQyxFQUFBOzt3QkFBbEMsU0FBa0MsQ0FBQzs7Ozs7S0FDcEM7SUFFRDs7T0FFRztJQUNVLDZCQUFLLEdBQWxCOzs7OzRCQUNFLHFCQUFNLElBQUksQ0FBQyxPQUFPLENBQUMsS0FBSyxFQUFFLEVBQUE7O3dCQUExQixTQUEwQixDQUFDOzs7OztLQUM1QjtJQUVEOztPQUVHO0lBQ1UsNkJBQUssR0FBbEI7Ozs7NEJBQ0UscUJBQU0sSUFBSSxDQUFDLE9BQU8sQ0FBQyxLQUFLLEVBQUUsRUFBQTs7d0JBQTFCLFNBQTBCLENBQUM7Ozs7O0tBQzVCO0lBRUQ7O09BRUc7SUFDVSwrQkFBTyxHQUFwQjs7O2dCQUNFLHNCQUFPLElBQUksQ0FBQyxPQUFPLENBQUMsT0FBTyxFQUFFLEVBQUM7OztLQUMvQjtJQUVEOztPQUVHO0lBQ1UsaUNBQVMsR0FBdEI7OztnQkFDRSxzQkFBTyxJQUFJLENBQUMsT0FBTyxDQUFDLFNBQVMsRUFBRSxFQUFDOzs7S0FDakM7SUFFRDs7T0FFRztJQUNVLG9DQUFZLEdBQXpCLFVBQTBCLFNBQVM7OztnQkFDakMsc0JBQU8sSUFBSSxDQUFDLE9BQU8sQ0FBQyxZQUFZLENBQUMsU0FBUyxDQUFDLEVBQUM7OztLQUM3QztJQUNEOztPQUVHO0lBQ0ksa0NBQVUsR0FBakI7UUFDRSxPQUFPLElBQUksQ0FBQyxPQUFPLENBQUM7SUFDdEIsQ0FBQztJQUVEOzs7T0FHRztJQUNJLGtDQUFVLEdBQWpCLFVBQWtCLE9BQU87UUFDdkIsSUFBSSxDQUFDLE9BQU8sR0FBRyxPQUFPLENBQUM7SUFDekIsQ0FBQztJQUNILG9CQUFDO0FBQUQsQ0FBQyxBQW5FRCxJQW1FQztBQW5FWSxzQ0FBYSJ9

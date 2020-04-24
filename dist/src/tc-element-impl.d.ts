@@ -1,8 +1,8 @@
 import { ElementFinder } from "protractor";
-import TCElement from "./TCElment";
-export declare class TCElementImpl implements TCElement {
+import TcElement from "./tc-element";
+export declare class TcElementImpl implements TcElement {
     protected elementFinder: ElementFinder;
-    private element;
+    element: ElementFinder;
     /**
      * Constructor
      * @param {ElementFinder} elementFinder
@@ -29,6 +29,10 @@ export declare class TCElementImpl implements TCElement {
      * Is Present
      */
     isPresent(): Promise<boolean>;
+    /**
+     * Returns the attribute
+     */
+    getAttribute(attribute: any): Promise<string>;
     /**
      * Get element
      */
