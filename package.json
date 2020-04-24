@@ -6,15 +6,12 @@
   "types": "dist/src/index.d.ts",
   "dependencies": {
     "@types/node": "^12.7.8",
-    "jasmine": "^3.4.0",
     "jsdom": "^15.1.1",
     "protractor": "^5.4.2",
     "typescript": "^3.5.3",
     "winston": "^3.2.1"
   },
   "devDependencies": {
-    "@types/jasmine": "^3.3.16",
-    "@types/jasminewd2": "^2.0.6",
     "rimraf": "^2.6.3",
     "tslint": "^5.18.0",
     "tslint-config-prettier": "^1.18.0"
@@ -28,7 +25,6 @@
   },
   "keywords": [
     "protractor",
-    "jasmine",
     "typescript"
   ]
 }
