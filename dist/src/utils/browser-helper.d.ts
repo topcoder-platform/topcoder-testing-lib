@@ -52,5 +52,9 @@ export declare const BrowserHelper: {
      * Switch Window
      * @param {Window} window
      */
-    switchTo(window: any): Promise<void>;
+    switchToWindow(window: any): Promise<void>;
+    /**
+     * Refresh
+     */
+    refresh(): Promise<void>;
 };

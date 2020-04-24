@@ -18,19 +18,20 @@ export declare class TcElementImpl implements TcElement {
      */
     click(): Promise<void>;
     /**
-     * Clear
+     * Clear element
      */
     clear(): Promise<void>;
     /**
-     * Get text
+     * Get text of Element
      */
     getText(): Promise<string>;
     /**
-     * Is Present
+     * Checks if Element is Present
      */
     isPresent(): Promise<boolean>;
     /**
      * Returns the attribute
+     * @param {any} attribute
      */
     getAttribute(attribute: any): Promise<string>;
     /**

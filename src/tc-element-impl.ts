@@ -28,21 +28,21 @@ export class TcElementImpl implements TcElement {
   }
 
   /**
-   * Clear
+   * Clear element
    */
   public async clear() {
     await this.element.clear();
   }
 
   /**
-   * Get text
+   * Get text of Element
    */
   public async getText() {
     return this.element.getText();
   }
 
   /**
-   * Is Present
+   * Checks if Element is Present
    */
   public async isPresent() {
     return this.element.isPresent();
@@ -50,6 +50,7 @@ export class TcElementImpl implements TcElement {
 
   /**
    * Returns the attribute
+   * @param {any} attribute
    */
   public async getAttribute(attribute) {
     return this.element.getAttribute(attribute);

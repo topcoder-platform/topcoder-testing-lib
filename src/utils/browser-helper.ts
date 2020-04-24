@@ -90,7 +90,14 @@ export const BrowserHelper = {
    * Switch Window
    * @param {Window} window
    */
-  async switchTo(window) {
+  async switchToWindow(window) {
     await browser.switchTo().window(window);
+  },
+
+  /**
+   * Refresh
+   */
+  async refresh() {
+    await browser.driver.navigate().refresh();
   },
 };
