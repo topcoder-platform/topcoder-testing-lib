@@ -47,22 +47,20 @@ export const BrowserHelper = {
   },
 
   /**
+   * Sleep
+   * @param {number} msec
+   */
+  async sleep(msec) {
+    await browser.sleep(msec);
+  },
+
+  /**
    * initialize the browser
    */
   async initialize() {
     await BrowserHelper.restart();
     await BrowserHelper.maximize();
     BrowserHelper.setIgnoreSync(true); // This is set  to false when accessing Non Angular Pages.
-  },
-
-  /**
-   * Wait until the expected condition
-   * @param {any} condition
-   * @param {nember} timeout
-   * @param {string} message
-   */
-  async wait(condition: any, timeout: number, message: string) {
-    await browser.wait(condition, timeout, message);
   },
 
   /**
@@ -102,10 +100,90 @@ export const BrowserHelper = {
   },
 
   /**
-   * Sleep
-   * @param {number} msec
+   * Wait until the element becomes visible
+   * @param {TcElementImpl} tcElement
+   * @param {number} timeout
+   * @param  {string} message
    */
-  async sleep(msec) {
-    await browser.sleep(msec);
+  async waitUnitilVisibilityOf(
+    tcElement: TcElementImpl,
+    timeout?: number,
+    message?: string
+  ) {
+    const until = protractor.ExpectedConditions;
+    const element = tcElement.getElement();
+    if (timeout && message) {
+      await browser.wait(until.visibilityOf(element), timeout, message);
+    } else if (timeout) {
+      await browser.wait(until.visibilityOf(element), timeout);
+    } else {
+      await browser.wait(until.visibilityOf(element));
+    }
+  },
+
+  /**
+   * Wait until the element becomes invisible
+   * @param {TcElementImpl} tcElement
+   * @param {number} timeout
+   * @param  {string} message
+   */
+  async waitUnitilInVisibilityOf(
+    tcElement: TcElementImpl,
+    timeout?: number,
+    message?: string
+  ) {
+    const until = protractor.ExpectedConditions;
+    const element = tcElement.getElement();
+    if (timeout && message) {
+      await browser.wait(until.invisibilityOf(element), timeout, message);
+    } else if (timeout) {
+      await browser.wait(until.invisibilityOf(element), timeout);
+    } else {
+      await browser.wait(until.invisibilityOf(element));
+    }
+  },
+
+  /**
+   * Wait until the element is present
+   * @param {TcElementImpl} tcElement
+   * @param {number} timeout
+   * @param  {string} message
+   */
+  async waitUnitilPresenceOf(
+    tcElement: TcElementImpl,
+    timeout?: number,
+    message?: string
+  ) {
+    const until = protractor.ExpectedConditions;
+    const element = tcElement.getElement();
+    if (timeout && message) {
+      await browser.wait(until.presenceOf(element), timeout, message);
+    } else if (timeout) {
+      await browser.wait(until.presenceOf(element), timeout);
+    } else {
+      await browser.wait(until.presenceOf(element));
+    }
+  },
+
+  /**
+   * Wait until the element is clickable
+   * @param {TcElementImpl} tcElement
+   * @param {number} timeout
+   * @param  {string} message
+   */
+  async waitUnitilClickableOf(
+    tcElement: TcElementImpl,
+    timeout?: number,
+    message?: string
+  ) {
+    const until = protractor.ExpectedConditions;
+    const element = tcElement.getElement();
+    if (timeout && message) {
+      await browser.wait(until.elementToBeClickable(element), timeout, message);
+    } else if (timeout) {
+      await browser.wait(until.elementToBeClickable(element), timeout);
+    } else {
+      await browser.wait(until.elementToBeClickable(element));
+    }
   },
 };

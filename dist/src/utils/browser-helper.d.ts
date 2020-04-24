@@ -1,3 +1,4 @@
+import { TcElementImpl } from "../tc-element-impl";
 export declare const BrowserHelper: {
     /**
      * opens the given url in the browser
@@ -26,16 +27,14 @@ export declare const BrowserHelper: {
      */
     implicitlyWait(sec: any): Promise<void>;
     /**
+     * Sleep
+     * @param {number} msec
+     */
+    sleep(msec: any): Promise<void>;
+    /**
      * initialize the browser
      */
     initialize(): Promise<void>;
-    /**
-     * Wait until the expected condition
-     * @param {any} condition
-     * @param {nember} timeout
-     * @param {string} message
-     */
-    wait(condition: any, timeout: number, message: string): Promise<void>;
     /**
      * Get Title
      */
@@ -58,8 +57,31 @@ export declare const BrowserHelper: {
      */
     refresh(): Promise<void>;
     /**
-     * Sleep
-     * @param {number} msec
+     * Wait until the element becomes visible
+     * @param {TcElementImpl} tcElement
+     * @param {number} timeout
+     * @param  {string} message
      */
-    sleep(msec: any): Promise<void>;
+    waitUnitilVisibilityOf(tcElement: TcElementImpl, timeout?: number, message?: string): Promise<void>;
+    /**
+     * Wait until the element becomes invisible
+     * @param {TcElementImpl} tcElement
+     * @param {number} timeout
+     * @param  {string} message
+     */
+    waitUnitilInVisibilityOf(tcElement: TcElementImpl, timeout?: number, message?: string): Promise<void>;
+    /**
+     * Wait until the element is present
+     * @param {TcElementImpl} tcElement
+     * @param {number} timeout
+     * @param  {string} message
+     */
+    waitUnitilPresenceOf(tcElement: TcElementImpl, timeout?: number, message?: string): Promise<void>;
+    /**
+     * Wait until the element is clickable
+     * @param {TcElementImpl} tcElement
+     * @param {number} timeout
+     * @param  {string} message
+     */
+    waitUnitilClickableOf(tcElement: TcElementImpl, timeout?: number, message?: string): Promise<void>;
 };
