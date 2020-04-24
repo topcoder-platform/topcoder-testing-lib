@@ -1,4 +1,6 @@
 {
   "extends": ["tslint:latest", "tslint-config-prettier"],
-  "interface-name": [true, "never-prefix"]
+  "rules": {
+    "interface-name": [true, "never-prefix"]
+  }
 }

@@ -57,4 +57,9 @@ export declare const BrowserHelper: {
      * Refresh
      */
     refresh(): Promise<void>;
+    /**
+     * Sleep
+     * @param {number} msec
+     */
+    sleep(msec: any): Promise<void>;
 };

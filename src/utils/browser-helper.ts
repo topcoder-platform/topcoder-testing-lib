@@ -100,4 +100,12 @@ export const BrowserHelper = {
   async refresh() {
     await browser.driver.navigate().refresh();
   },
+
+  /**
+   * Sleep
+   * @param {number} msec
+   */
+  async sleep(msec) {
+    await browser.sleep(msec);
+  },
 };
