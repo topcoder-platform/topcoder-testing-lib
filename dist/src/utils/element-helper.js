@@ -40,14 +40,19 @@ var tc_element_impl_1 = require("../tc-element-impl");
 exports.ElementHelper = {
     /**
      * Get element by classname
-     * @param {String} className
+     * @param {string} className
+     * @param {TcElement} parentEl
      */
-    getElementByClassName: function (className) {
+    getElementByClassName: function (className, parentEl) {
+        if (parentEl) {
+            var el = parentEl.getElement();
+            return new tc_element_impl_1.TcElementImpl(el.element(protractor_1.by.className(className)));
+        }
         return new tc_element_impl_1.TcElementImpl(protractor_1.element(protractor_1.by.className(className)));
     },
     /**
      * Get all elements by classname
-     * @param {String} className
+     * @param {string} className
      */
     getAllElementsByClassName: function (className) {
         return __awaiter(this, void 0, void 0, function () {
@@ -64,7 +69,7 @@ exports.ElementHelper = {
     },
     /**
      * Get all elements by css
-     * @param {String} className
+     * @param {string} className
      */
     getAllElementsByCss: function (cssName) {
         return __awaiter(this, void 0, void 0, function () {
@@ -81,120 +86,120 @@ exports.ElementHelper = {
     },
     /**
      * Get element by css
-     * @param {String} css
+     * @param {string} css
      */
     getElementByCss: function (css) {
         return new tc_element_impl_1.TcElementImpl(protractor_1.element(protractor_1.by.css(css)));
     },
     /**
      * Get element by id
-     * @param {String} id
+     * @param {string} id
      */
     getElementById: function (id) {
         return new tc_element_impl_1.TcElementImpl(protractor_1.element(protractor_1.by.id(id)));
     },
     /**
      * Get element by javascript
-     * @param {String|Function} js
+     * @param {string|Function} js
      */
     getElementByJs: function (js) {
         return new tc_element_impl_1.TcElementImpl(protractor_1.element(protractor_1.by.js(js)));
     },
     /**
      * Get element by name
-     * @param {String} name
+     * @param {string} name
      */
     getElementByName: function (name) {
         return new tc_element_impl_1.TcElementImpl(protractor_1.element(protractor_1.by.name(name)));
     },
     /**
      * Get element by partial anchor element text
-     * @param {String} text
+     * @param {string} text
      */
     getElementByPartialLinkText: function (text) {
         return new tc_element_impl_1.TcElementImpl(protractor_1.element(protractor_1.by.partialLinkText(text)));
     },
     /**
      * Get element by html tag
-     * @param {String} tag
+     * @param {string} tag
      */
     getElementsByTag: function (tag) {
         return new tc_element_impl_1.TcElementImpl(protractor_1.element(protractor_1.by.tagName(tag)));
     },
     /**
      * Get element by binding
-     * @param {String} binding
+     * @param {string} binding
      */
     getElementByBinding: function (binding) {
         return new tc_element_impl_1.TcElementImpl(protractor_1.element(protractor_1.by.binding(binding)));
     },
     /**
      * Get element by exact binding
-     * @param {String} binding
+     * @param {string} binding
      */
     getElementByExactBinding: function (binding) {
         return new tc_element_impl_1.TcElementImpl(protractor_1.element(protractor_1.by.exactBinding(binding)));
     },
     /**
      * Get element by model
-     * @param {String} model
+     * @param {string} model
      */
     getElementByModel: function (model) {
         return new tc_element_impl_1.TcElementImpl(protractor_1.element(protractor_1.by.model(model)));
     },
     /**
      * Get element by button containing substring
-     * @param {String} text
+     * @param {string} text
      */
     getElementByPartialButtonText: function (text) {
         return new tc_element_impl_1.TcElementImpl(protractor_1.element(protractor_1.by.partialButtonText(text)));
     },
     /**
      * Get element by repeater
-     * @param {String} repeater
+     * @param {string} repeater
      */
     getElementByRepeater: function (repeater) {
         return new tc_element_impl_1.TcElementImpl(protractor_1.element(protractor_1.by.repeater(repeater)));
     },
     /**
      * Get element by exact repeater
-     * @param {String} repeater
+     * @param {string} repeater
      */
     getElementByExactRepeater: function (repeater) {
         return new tc_element_impl_1.TcElementImpl(protractor_1.element(protractor_1.by.exactRepeater(repeater)));
     },
     /**
      * Get element by css containing text
-     * @param {String} cssSelector
-     * @param {String} text
+     * @param {string} cssSelector
+     * @param {string} text
      */
     getElementByCssContainingText: function (cssSelector, text) {
         return new tc_element_impl_1.TcElementImpl(protractor_1.element(protractor_1.by.cssContainingText(cssSelector, text)));
     },
     /**
      * Get element by options
-     * @param {String} options
+     * @param {string} options
      */
     getElementByOptions: function (options) {
         return new tc_element_impl_1.TcElementImpl(protractor_1.element(protractor_1.by.options(options)));
     },
     /**
      * Get element by deep css
-     * @param {String} deepCss
+     * @param {string} deepCss
      */
     getElementByDeepCss: function (deepCss) {
         return new tc_element_impl_1.TcElementImpl(protractor_1.element(protractor_1.by.deepCss(deepCss)));
     },
     /**
      * Get element by xPath
-     * @param {String} xPath
+     * @param {string} xPath
      */
     getElementByXPath: function (xPath) {
         return new tc_element_impl_1.TcElementImpl(protractor_1.element(protractor_1.by.xpath(xPath)));
     },
     /**
      * Get element containing text
-     * @param {String} text
+     * @param {string} text
      */
     getElementContainingText: function (text) {
         var xPath = "//*[contains(text(),\"" + text + "\")]";
@@ -202,8 +207,8 @@ exports.ElementHelper = {
     },
     /**
      * Get html tag element containing text
-     * @param {String} tag
-     * @param {String} text
+     * @param {string} tag
+     * @param {string} text
      */
     getTagElementContainingText: function (tag, text) {
         var xPath = "//" + tag + "[contains(text(),\"" + text + "\")]";
@@ -211,15 +216,15 @@ exports.ElementHelper = {
     },
     /**
      * Get input element by type
-     * @param {String} type
+     * @param {string} type
      */
     getInputElementByType: function (type) {
         var xPath = "//input[@type=\"" + type + "\"]";
         return this.getElementByXPath(xPath);
     },
     /**
-     * Get input element by type
-     * @param {String} type
+     * Get TcElement Array
+     * @param {ElementArrayFinder} elementArray
      */
     getElementArray: function (elementArray) {
         var tcElementArray = [];
@@ -229,4 +234,4 @@ exports.ElementHelper = {
         return tcElementArray;
     },
 };
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZWxlbWVudC1oZWxwZXIuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi8uLi8uLi9zcmMvdXRpbHMvZWxlbWVudC1oZWxwZXIudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7OztBQUFBLHlDQUE2RDtBQUM3RCxzREFBbUQ7QUFFdEMsUUFBQSxhQUFhLEdBQUc7SUFDM0I7OztPQUdHO0lBQ0gscUJBQXFCLFlBQUMsU0FBUztRQUM3QixPQUFPLElBQUksK0JBQWEsQ0FBQyxvQkFBTyxDQUFDLGVBQUUsQ0FBQyxTQUFTLENBQUMsU0FBUyxDQUFDLENBQUMsQ0FBQyxDQUFDO0lBQzdELENBQUM7SUFFRDs7O09BR0c7SUFDRyx5QkFBeUIsWUFBQyxTQUFTOzs7Ozs0QkFDMUIscUJBQU0sb0JBQU8sQ0FBQyxHQUFHLENBQUMsZUFBRSxDQUFDLFNBQVMsQ0FBQyxTQUFTLENBQUMsQ0FBQyxFQUFBOzt3QkFBakQsSUFBSSxHQUFHLFNBQTBDO3dCQUN2RCxzQkFBTyxJQUFJLENBQUMsZUFBZSxDQUFDLElBQUksQ0FBQyxFQUFDOzs7O0tBQ25DO0lBRUQ7OztPQUdHO0lBQ0csbUJBQW1CLFlBQUMsT0FBTzs7Ozs7NEJBQ2xCLHFCQUFNLG9CQUFPLENBQUMsR0FBRyxDQUFDLGVBQUUsQ0FBQyxHQUFHLENBQUMsT0FBTyxDQUFDLENBQUMsRUFBQTs7d0JBQXpDLElBQUksR0FBRyxTQUFrQzt3QkFDL0Msc0JBQU8sSUFBSSxDQUFDLGVBQWUsQ0FBQyxJQUFJLENBQUMsRUFBQzs7OztLQUNuQztJQUVEOzs7T0FHRztJQUNILGVBQWUsWUFBQyxHQUFHO1FBQ2pCLE9BQU8sSUFBSSwrQkFBYSxDQUFDLG9CQUFPLENBQUMsZUFBRSxDQUFDLEdBQUcsQ0FBQyxHQUFHLENBQUMsQ0FBQyxDQUFDLENBQUM7SUFDakQsQ0FBQztJQUVEOzs7T0FHRztJQUNILGNBQWMsWUFBQyxFQUFFO1FBQ2YsT0FBTyxJQUFJ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
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZWxlbWVudC1oZWxwZXIuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi8uLi8uLi9zcmMvdXRpbHMvZWxlbWVudC1oZWxwZXIudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7OztBQUFBLHlDQUE2RDtBQUM3RCxzREFBbUQ7QUFFdEMsUUFBQSxhQUFhLEdBQUc7SUFDM0I7Ozs7T0FJRztJQUNILHFCQUFxQixFQUFyQixVQUFzQixTQUFpQixFQUFFLFFBQXdCO1FBQy9ELElBQUksUUFBUSxFQUFFO1lBQ1osSUFBTSxFQUFFLEdBQUcsUUFBUSxDQUFDLFVBQVUsRUFBRSxDQUFDO1lBQ2pDLE9BQU8sSUFBSSwrQkFBYSxDQUFDLEVBQUUsQ0FBQyxPQUFPLENBQUMsZUFBRSxDQUFDLFNBQVMsQ0FBQyxTQUFTLENBQUMsQ0FBQyxDQUFDLENBQUM7U0FDL0Q7UUFDRCxPQUFPLElBQUksK0JBQWEsQ0FBQyxvQkFBTyxDQUFDLGVBQUUsQ0FBQyxTQUFTLENBQUMsU0FBUyxDQUFDLENBQUMsQ0FBQyxDQUFDO0lBQzdELENBQUM7SUFFRDs7O09BR0c7SUFDRyx5QkFBeUIsWUFBQyxTQUFTOzs7Ozs0QkFDMUIscUJBQU0sb0JBQU8sQ0FBQyxHQUFHLENBQUMsZUFBRSxDQUFDLFNBQVMsQ0FBQyxTQUFTLENBQUMsQ0FBQyxFQUFBOzt3QkFBakQsSUFBSSxHQUFHLFNBQTBDO3dCQUN2RCxzQkFBTyxJQUFJLENBQUMsZUFBZSxDQUFDLElBQUksQ0FBQyxFQUFDOzs7O0tBQ25DO0lBRUQ7OztPQUdHO0lBQ0csbUJBQW1CLFlBQUMsT0FBTzs7Ozs7NEJBQ2xCLHFCQUFNLG9CQUFPLENBQUMsR0FBRyxDQUFDLGVBQUUsQ0FBQyxHQUFHLENBQUMsT0FBTyxDQUFDLENBQUMsRUFBQTs7d0JBQXpDLElBQUksR0FBRyxTQUFrQzt3QkFDL0Msc0JBQU8sSUFBSSxDQUFDLGVBQWUsQ0FBQyxJQUFJLENBQUMsRUFB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

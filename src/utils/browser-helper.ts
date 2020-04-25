@@ -1,4 +1,4 @@
-import { browser, protractor, ProtractorExpectedConditions } from "protractor";
+import { browser, protractor } from "protractor";
 import { TcElementImpl } from "../tc-element-impl";
 
 export const BrowserHelper = {

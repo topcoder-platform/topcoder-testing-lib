@@ -4,15 +4,20 @@ import { TcElementImpl } from "../tc-element-impl";
 export const ElementHelper = {
   /**
    * Get element by classname
-   * @param {String} className
+   * @param {string} className
+   * @param {TcElement} parentEl
    */
-  getElementByClassName(className) {
+  getElementByClassName(className: string, parentEl?: TcElementImpl) {
+    if (parentEl) {
+      const el = parentEl.getElement();
+      return new TcElementImpl(el.element(by.className(className)));
+    }
     return new TcElementImpl(element(by.className(className)));
   },
 
   /**
    * Get all elements by classname
-   * @param {String} className
+   * @param {string} className
    */
   async getAllElementsByClassName(className) {
     const list = await element.all(by.className(className));
@@ -21,7 +26,7 @@ export const ElementHelper = {
 
   /**
    * Get all elements by css
-   * @param {String} className
+   * @param {string} className
    */
   async getAllElementsByCss(cssName) {
     const list = await element.all(by.css(cssName));
@@ -30,7 +35,7 @@ export const ElementHelper = {
 
   /**
    * Get element by css
-   * @param {String} css
+   * @param {string} css
    */
   getElementByCss(css) {
     return new TcElementImpl(element(by.css(css)));
@@ -38,7 +43,7 @@ export const ElementHelper = {
 
   /**
    * Get element by id
-   * @param {String} id
+   * @param {string} id
    */
   getElementById(id) {
     return new TcElementImpl(element(by.id(id)));
@@ -46,7 +51,7 @@ export const ElementHelper = {
 
   /**
    * Get element by javascript
-   * @param {String|Function} js
+   * @param {string|Function} js
    */
   getElementByJs(js) {
     return new TcElementImpl(element(by.js(js)));
@@ -54,7 +59,7 @@ export const ElementHelper = {
 
   /**
    * Get element by name
-   * @param {String} name
+   * @param {string} name
    */
   getElementByName(name) {
     return new TcElementImpl(element(by.name(name)));
@@ -62,7 +67,7 @@ export const ElementHelper = {
 
   /**
    * Get element by partial anchor element text
-   * @param {String} text
+   * @param {string} text
    */
   getElementByPartialLinkText(text) {
     return new TcElementImpl(element(by.partialLinkText(text)));
@@ -70,7 +75,7 @@ export const ElementHelper = {
 
   /**
    * Get element by html tag
-   * @param {String} tag
+   * @param {string} tag
    */
   getElementsByTag(tag) {
     return new TcElementImpl(element(by.tagName(tag)));
@@ -78,7 +83,7 @@ export const ElementHelper = {
 
   /**
    * Get element by binding
-   * @param {String} binding
+   * @param {string} binding
    */
   getElementByBinding(binding) {
     return new TcElementImpl(element(by.binding(binding)));
@@ -86,7 +91,7 @@ export const ElementHelper = {
 
   /**
    * Get element by exact binding
-   * @param {String} binding
+   * @param {string} binding
    */
   getElementByExactBinding(binding) {
     return new TcElementImpl(element(by.exactBinding(binding)));
@@ -94,7 +99,7 @@ export const ElementHelper = {
 
   /**
    * Get element by model
-   * @param {String} model
+   * @param {string} model
    */
   getElementByModel(model) {
     return new TcElementImpl(element(by.model(model)));
@@ -102,7 +107,7 @@ export const ElementHelper = {
 
   /**
    * Get element by button containing substring
-   * @param {String} text
+   * @param {string} text
    */
   getElementByPartialButtonText(text) {
     return new TcElementImpl(element(by.partialButtonText(text)));
@@ -110,7 +115,7 @@ export const ElementHelper = {
 
   /**
    * Get element by repeater
-   * @param {String} repeater
+   * @param {string} repeater
    */
   getElementByRepeater(repeater) {
     return new TcElementImpl(element(by.repeater(repeater)));
@@ -118,7 +123,7 @@ export const ElementHelper = {
 
   /**
    * Get element by exact repeater
-   * @param {String} repeater
+   * @param {string} repeater
    */
   getElementByExactRepeater(repeater) {
     return new TcElementImpl(element(by.exactRepeater(repeater)));
@@ -126,15 +131,15 @@ export const ElementHelper = {
 
   /**
    * Get element by css containing text
-   * @param {String} cssSelector
-   * @param {String} text
+   * @param {string} cssSelector
+   * @param {string} text
    */
   getElementByCssContainingText(cssSelector, text) {
     return new TcElementImpl(element(by.cssContainingText(cssSelector, text)));
   },
   /**
    * Get element by options
-   * @param {String} options
+   * @param {string} options
    */
   getElementByOptions(options) {
     return new TcElementImpl(element(by.options(options)));
@@ -142,7 +147,7 @@ export const ElementHelper = {
 
   /**
    * Get element by deep css
-   * @param {String} deepCss
+   * @param {string} deepCss
    */
   getElementByDeepCss(deepCss) {
     return new TcElementImpl(element(by.deepCss(deepCss)));
@@ -150,7 +155,7 @@ export const ElementHelper = {
 
   /**
    * Get element by xPath
-   * @param {String} xPath
+   * @param {string} xPath
    */
   getElementByXPath(xPath) {
     return new TcElementImpl(element(by.xpath(xPath)));
@@ -158,7 +163,7 @@ export const ElementHelper = {
 
   /**
    * Get element containing text
-   * @param {String} text
+   * @param {string} text
    */
   getElementContainingText(text) {
     const xPath = `//*[contains(text(),"${text}")]`;
@@ -167,8 +172,8 @@ export const ElementHelper = {
 
   /**
    * Get html tag element containing text
-   * @param {String} tag
-   * @param {String} text
+   * @param {string} tag
+   * @param {string} text
    */
   getTagElementContainingText(tag, text) {
     const xPath = `//${tag}[contains(text(),"${text}")]`;
@@ -177,7 +182,7 @@ export const ElementHelper = {
 
   /**
    * Get input element by type
-   * @param {String} type
+   * @param {string} type
    */
   getInputElementByType(type) {
     const xPath = `//input[@type="${type}"]`;
@@ -185,8 +190,8 @@ export const ElementHelper = {
   },
 
   /**
-   * Get input element by type
-   * @param {String} type
+   * Get TcElement Array
+   * @param {ElementArrayFinder} elementArray
    */
   getElementArray(elementArray: ElementArrayFinder) {
     const tcElementArray: TcElementImpl[] = [];
