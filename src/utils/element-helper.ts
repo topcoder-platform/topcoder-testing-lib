@@ -5,7 +5,7 @@ export const ElementHelper = {
   /**
    * Get element by classname
    * @param {string} className
-   * @param {TcElement} parentEl
+   * @param {TcElementImpl} parentEl
    */
   getElementByClassName(className: string, parentEl?: TcElementImpl) {
     if (parentEl) {
