@@ -41,7 +41,7 @@ exports.ElementHelper = {
     /**
      * Get element by classname
      * @param {string} className
-     * @param {TcElement} parentEl
+     * @param {TcElementImpl} parentEl
      */
     getElementByClassName: function (className, parentEl) {
         if (parentEl) {

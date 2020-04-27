@@ -19,9 +19,8 @@
   "scripts": {
     "tsc": "tsc",
     "clean": "rimraf dist",
-    "webdriver-update": "node node_modules/protractor/bin/webdriver-manager update",
     "test": "tslint -p tsconfig.json",
-    "build": "npm run webdriver-update && npm run clean && npm run tsc"
+    "build": "npm run clean && npm run tsc"
   },
   "keywords": [
     "protractor",
