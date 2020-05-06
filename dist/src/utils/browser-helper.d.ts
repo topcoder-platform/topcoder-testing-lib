@@ -3,57 +3,69 @@ export declare const BrowserHelper: {
     /**
      * opens the given url in the browser
      * @param {String} url
+     * @returns {Promise<any>}
      */
-    open(url: any): Promise<void>;
+    open(url: any): Promise<any>;
     /**
      * Set Browser ignoreSynchronization value
      */
     setIgnoreSync(bool: boolean): void;
     /**
      * restart the browser
+     * @returns {Promise<any>}
      */
-    restart(): Promise<void>;
+    restart(): Promise<any>;
     /**
      * close the browser
+     * @returns {Promise<void>}
      */
     close(): Promise<void>;
     /**
      * maximize
+     * @returns {Promise<void>}
      */
     maximize(): Promise<void>;
     /**
      * implicitly wait
      * @param {number} sec
+     * @returns {Promise<void>}
      */
     implicitlyWait(sec: any): Promise<void>;
     /**
      * Sleep
      * @param {number} msec
+     * @returns {Promise<void>}
      */
     sleep(msec: any): Promise<void>;
     /**
      * initialize the browser
+     * @returns {Promise<void>}
      */
     initialize(): Promise<void>;
     /**
      * Get Title
+     * @returns {Promise<string>}
      */
     getTitle(): Promise<string>;
     /**
      * Get Current URL
+     * @returns {Promise<string>}
      */
     getCurrentUrl(): Promise<string>;
     /**
      * Get All Window Handles
+     * @returns {Promise<string[]>}
      */
     getAllWindowHandles(): Promise<string[]>;
     /**
      * Switch Window
      * @param {Window} window
+     * @returns {Promise<void>}
      */
     switchToWindow(window: any): Promise<void>;
     /**
      * Refresh
+     * @returns {Promise<void>}
      */
     refresh(): Promise<void>;
     /**
@@ -62,26 +74,97 @@ export declare const BrowserHelper: {
      * @param {number} timeout
      * @param  {string} message
      */
-    waitUnitilVisibilityOf(tcElement: TcElementImpl, timeout?: number, message?: string): Promise<void>;
+    waitUntilVisibilityOf(tcElement: TcElementImpl, timeout?: number, message?: string): Promise<void>;
     /**
      * Wait until the element becomes invisible
      * @param {TcElementImpl} tcElement
      * @param {number} timeout
      * @param  {string} message
      */
-    waitUnitilInVisibilityOf(tcElement: TcElementImpl, timeout?: number, message?: string): Promise<void>;
+    waitUntilInVisibilityOf(tcElement: TcElementImpl, timeout?: number, message?: string): Promise<void>;
     /**
      * Wait until the element is present
      * @param {TcElementImpl} tcElement
      * @param {number} timeout
      * @param  {string} message
      */
-    waitUnitilPresenceOf(tcElement: TcElementImpl, timeout?: number, message?: string): Promise<void>;
+    waitUntilPresenceOf(tcElement: TcElementImpl, timeout?: number, message?: string): Promise<void>;
     /**
      * Wait until the element is clickable
      * @param {TcElementImpl} tcElement
      * @param {number} timeout
      * @param  {string} message
      */
-    waitUnitilClickableOf(tcElement: TcElementImpl, timeout?: number, message?: string): Promise<void>;
+    waitUntilClickableOf(tcElement: TcElementImpl, timeout?: number, message?: string): Promise<void>;
+    /**
+     * Waits until alert is displayed
+     * @param {number} timeout
+     * @param {string} message
+     */
+    waitUntilAlertIsPresent(timeout?: number, message?: string): Promise<void>;
+    /**
+     * Wait until the given text to be present in the element
+     * @param {TcElementImpl} tcElement
+     * @param {string} text
+     * @param {number} timeout
+     * @param  {string} message
+     */
+    waitUntilTextToBePresentInElement(tcElement: TcElementImpl, text: string, timeout?: number, message?: string): Promise<void>;
+    /**
+     * Wait until the text to be present in elementValue
+     * @param {TcElementImpl} tcElement
+     * @param {string} text
+     * @param {number} timeout
+     * @param  {string} message
+     */
+    waitUntilTextToPresentInElementValue(tcElement: TcElementImpl, text: string, timeout?: number, message?: string): Promise<void>;
+    /**
+     * Wait until the title of page contains
+     * @param {string} text
+     * @param {number} timeout
+     * @param  {string} message
+     */
+    waitUntilTitleContains(title: string, timeout?: number, message?: string): Promise<void>;
+    /**
+     * Wait until the title of page is exactly as the given title
+     * @param {string} title
+     * @param {number} timeout
+     * @param  {string} message
+     */
+    waitUntilTitleIs(title: string, timeout?: number, message?: string): Promise<void>;
+    /**
+     * Wait until the url contains the given text
+     * @param {string} text
+     * @param {number} timeout
+     * @param  {string} message
+     */
+    waitUntilUrlContains(text: string, timeout?: number, message?: string): Promise<void>;
+    /**
+     * Wait until the url is exactly equal to given text
+     * @param {string} text
+     * @param {number} timeout
+     * @param  {string} message
+     */
+    waitUntilUrlIs(text: string, timeout?: number, message?: string): Promise<void>;
+    /**
+     * Wait until the element is not present in DOM
+     * @param {TcElementImpl} tcElement
+     * @param {number} timeout
+     * @param  {string} message
+     */
+    waitUntilStalenessOf(tcElement: TcElementImpl, timeout?: number, message?: string): Promise<void>;
+    /**
+     * Wait until the element is selected
+     * @param {TcElementImpl} tcElement
+     * @param {number} timeout
+     * @param  {string} message
+     */
+    waitUntilElementToBeSelected(tcElement: TcElementImpl, timeout?: number, message?: string): Promise<void>;
+    /**
+     * Wait until the function applied
+     * @param {function} func
+     * @param {number} timeout
+     * @param  {string} message
+     */
+    waitUntil(func: () => any, timeout?: number, message?: string): Promise<void>;
 };
