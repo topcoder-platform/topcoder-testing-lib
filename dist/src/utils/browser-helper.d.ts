@@ -69,6 +69,11 @@ export declare const BrowserHelper: {
      */
     refresh(): Promise<void>;
     /**
+     * Moves the mouse to the element location
+     * @param {TcElementImpl} tcElement
+     */
+    mouseMove(tcElement: TcElementImpl): Promise<void>;
+    /**
      * Wait until the element becomes visible
      * @param {TcElementImpl} tcElement
      * @param {number} timeout
@@ -117,7 +122,7 @@ export declare const BrowserHelper: {
      * @param {number} timeout
      * @param  {string} message
      */
-    waitUntilTextToPresentInElementValue(tcElement: TcElementImpl, text: string, timeout?: number, message?: string): Promise<void>;
+    waitUntilTextToBePresentInElementValue(tcElement: TcElementImpl, text: string, timeout?: number, message?: string): Promise<void>;
     /**
      * Wait until the title of page contains
      * @param {string} text

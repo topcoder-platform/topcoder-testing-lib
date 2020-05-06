@@ -112,6 +112,14 @@ export const BrowserHelper = {
   },
 
   /**
+   * Moves the mouse to the element location
+   * @param {TcElementImpl} tcElement
+   */
+  async mouseMove(tcElement: TcElementImpl) {
+    await browser.actions().mouseMove(tcElement.getElement()).perform();
+  },
+
+  /**
    * Wait until the element becomes visible
    * @param {TcElementImpl} tcElement
    * @param {number} timeout
@@ -231,7 +239,7 @@ export const BrowserHelper = {
    * @param {number} timeout
    * @param  {string} message
    */
-  async waitUntilTextToPresentInElementValue(
+  async waitUntilTextToBePresentInElementValue(
     tcElement: TcElementImpl,
     text: string,
     timeout?: number,
