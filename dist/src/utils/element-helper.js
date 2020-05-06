@@ -41,42 +41,24 @@ exports.ElementHelper = {
     /**
      * Get element by classname
      * @param {string} className
-     * @param {TcElement} parentEl
+     * @param {TcElementImpl} parentEl
+     * @returns {TcElementImpl} the resolved element by classname
      */
     getElementByClassName: function (className, parentEl) {
-        if (parentEl) {
-            var el = parentEl.getElement();
-            return new tc_element_impl_1.TcElementImpl(el.element(protractor_1.by.className(className)));
-        }
-        return new tc_element_impl_1.TcElementImpl(protractor_1.element(protractor_1.by.className(className)));
+        return new tc_element_impl_1.TcElementImpl(this.getElement(protractor_1.by.className(className), parentEl));
     },
     /**
      * Get all elements by classname
      * @param {string} className
+     * @param {TcElementImpl} parentEl
+     * @returns {Promise<TcElementImpl[]>} the resolved elements by classname
      */
-    getAllElementsByClassName: function (className) {
+    getAllElementsByClassName: function (className, parentEl) {
         return __awaiter(this, void 0, void 0, function () {
             var list;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, protractor_1.element.all(protractor_1.by.className(className))];
-                    case 1:
-                        list = _a.sent();
-                        return [2 /*return*/, this.getElementArray(list)];
-                }
-            });
-        });
-    },
-    /**
-     * Get all elements by css
-     * @param {string} className
-     */
-    getAllElementsByCss: function (cssName) {
-        return __awaiter(this, void 0, void 0, function () {
-            var list;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, protractor_1.element.all(protractor_1.by.css(cssName))];
+                    case 0: return [4 /*yield*/, this.getAllElements(protractor_1.by.className(className), parentEl)];
                     case 1:
                         list = _a.sent();
                         return [2 /*return*/, this.getElementArray(list)];
@@ -87,151 +69,577 @@ exports.ElementHelper = {
     /**
      * Get element by css
      * @param {string} css
+     * @param {TcElementImpl} parentEl
+     * @returns {TcElementImpl} the resolved element by css
      */
-    getElementByCss: function (css) {
-        return new tc_element_impl_1.TcElementImpl(protractor_1.element(protractor_1.by.css(css)));
+    getElementByCss: function (css, parentEl) {
+        return new tc_element_impl_1.TcElementImpl(this.getElement(protractor_1.by.css(css), parentEl));
+    },
+    /**
+     * Get all elements by css
+     * @param {string} cssName
+     * @param {TcElementImpl} parentEl
+     * @returns {Promise<TcElementImpl[]>} the resolved elements by css
+     */
+    getAllElementsByCss: function (cssName, parentEl) {
+        return __awaiter(this, void 0, void 0, function () {
+            var list;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.getAllElements(protractor_1.by.css(cssName), parentEl)];
+                    case 1:
+                        list = _a.sent();
+                        return [2 /*return*/, this.getElementArray(list)];
+                }
+            });
+        });
     },
     /**
      * Get element by id
      * @param {string} id
+     * @param {TcElementImpl} parentEl
+     * @returns {TcElementImpl} the resolved element by id
      */
-    getElementById: function (id) {
-        return new tc_element_impl_1.TcElementImpl(protractor_1.element(protractor_1.by.id(id)));
+    getElementById: function (id, parentEl) {
+        return new tc_element_impl_1.TcElementImpl(this.getElement(protractor_1.by.id(id), parentEl));
+    },
+    /**
+     * Get all elements by id
+     * @param {string} id
+     * @param {TcElementImpl} parentEl
+     * @returns {Promise<TcElementImpl[]>} the resolved elements by id
+     */
+    getAllElementsById: function (id, parentEl) {
+        return __awaiter(this, void 0, void 0, function () {
+            var list;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.getAllElements(protractor_1.by.id(id), parentEl)];
+                    case 1:
+                        list = _a.sent();
+                        return [2 /*return*/, this.getElementArray(list)];
+                }
+            });
+        });
     },
     /**
      * Get element by javascript
      * @param {string|Function} js
+     * @param {TcElementImpl} parentEl
+     * @returns {TcElementImpl} the resolved element by js
      */
-    getElementByJs: function (js) {
-        return new tc_element_impl_1.TcElementImpl(protractor_1.element(protractor_1.by.js(js)));
+    getElementByJs: function (js, parentEl) {
+        return new tc_element_impl_1.TcElementImpl(this.getElement(protractor_1.by.js(js), parentEl));
+    },
+    /**
+     * Get all elements by js
+     * @param {string} js
+     * @param {TcElementImpl} parentEl
+     * @returns {Promise<TcElementImpl[]>} the resolved elements by js
+     */
+    getAllElementsByJs: function (js, parentEl) {
+        return __awaiter(this, void 0, void 0, function () {
+            var list;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.getAllElements(protractor_1.by.js(js), parentEl)];
+                    case 1:
+                        list = _a.sent();
+                        return [2 /*return*/, this.getElementArray(list)];
+                }
+            });
+        });
     },
     /**
      * Get element by name
      * @param {string} name
+     * @param {TcElementImpl} parentEl
+     * @returns {TcElementImpl} the resolved element by name
      */
-    getElementByName: function (name) {
-        return new tc_element_impl_1.TcElementImpl(protractor_1.element(protractor_1.by.name(name)));
+    getElementByName: function (name, parentEl) {
+        return new tc_element_impl_1.TcElementImpl(this.getElement(protractor_1.by.name(name), parentEl));
+    },
+    /**
+     * Get all elements by name
+     * @param {string} name
+     * @param {TcElementImpl} parentEl
+     * @returns {Promise<TcElementImpl[]>} the resolved elements by name
+     */
+    getAllElementsByName: function (name, parentEl) {
+        return __awaiter(this, void 0, void 0, function () {
+            var list;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.getAllElements(protractor_1.by.name(name), parentEl)];
+                    case 1:
+                        list = _a.sent();
+                        return [2 /*return*/, this.getElementArray(list)];
+                }
+            });
+        });
+    },
+    /**
+     * Get element by anchor element text
+     * @param {string} text
+     * @param {TcElementImpl} parentEl
+     * @returns {TcElementImpl} the resolved element by link text
+     */
+    getElementByLinkText: function (text, parentEl) {
+        return new tc_element_impl_1.TcElementImpl(this.getElement(protractor_1.by.linkText(text), parentEl));
+    },
+    /**
+     * Get all elements by link text
+     * @param {string} text
+     * @param {TcElementImpl} parentEl
+     * @returns {Promise<TcElementImpl[]>} the resolved elements by link text
+     */
+    getAllElementsByLinkText: function (text, parentEl) {
+        return __awaiter(this, void 0, void 0, function () {
+            var list;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.getAllElements(protractor_1.by.linkText(text), parentEl)];
+                    case 1:
+                        list = _a.sent();
+                        return [2 /*return*/, this.getElementArray(list)];
+                }
+            });
+        });
     },
     /**
      * Get element by partial anchor element text
      * @param {string} text
+     * @param {TcElementImpl} parentEl
+     * @returns {TcElementImpl} the resolved element by partial link text
      */
-    getElementByPartialLinkText: function (text) {
-        return new tc_element_impl_1.TcElementImpl(protractor_1.element(protractor_1.by.partialLinkText(text)));
+    getElementByPartialLinkText: function (text, parentEl) {
+        return new tc_element_impl_1.TcElementImpl(this.getElement(protractor_1.by.partialLinkText(text), parentEl));
+    },
+    /**
+     * Get all elements by partial link text
+     * @param {string} text
+     * @param {TcElementImpl} parentEl
+     * @returns {Promise<TcElementImpl[]>} the resolved elements by partial link text
+     */
+    getAllElementsByPartialLinkText: function (text, parentEl) {
+        return __awaiter(this, void 0, void 0, function () {
+            var list;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.getAllElements(protractor_1.by.partialLinkText(text), parentEl)];
+                    case 1:
+                        list = _a.sent();
+                        return [2 /*return*/, this.getElementArray(list)];
+                }
+            });
+        });
     },
     /**
      * Get element by html tag
      * @param {string} tag
+     * @param {TcElementImpl} parentEl
+     * @returns {TcElementImpl} the resolved element by html tag
      */
-    getElementsByTag: function (tag) {
-        return new tc_element_impl_1.TcElementImpl(protractor_1.element(protractor_1.by.tagName(tag)));
+    getElementByTag: function (tag, parentEl) {
+        return new tc_element_impl_1.TcElementImpl(this.getElement(protractor_1.by.tagName(tag), parentEl));
+    },
+    /**
+     * Get all elements by html tag
+     * @param {string} tag
+     * @param {TcElementImpl} parentEl
+     * @returns {Promise<TcElementImpl[]>} the resolved elements by html tag
+     */
+    getAllElementsByTag: function (tag, parentEl) {
+        return __awaiter(this, void 0, void 0, function () {
+            var list;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.getAllElements(protractor_1.by.tagName(tag), parentEl)];
+                    case 1:
+                        list = _a.sent();
+                        return [2 /*return*/, this.getElementArray(list)];
+                }
+            });
+        });
     },
     /**
      * Get element by binding
      * @param {string} binding
+     * @param {TcElementImpl} parentEl
+     * @returns {TcElementImpl} the resolved element by binding
      */
-    getElementByBinding: function (binding) {
-        return new tc_element_impl_1.TcElementImpl(protractor_1.element(protractor_1.by.binding(binding)));
+    getElementByBinding: function (binding, parentEl) {
+        return new tc_element_impl_1.TcElementImpl(this.getElement(protractor_1.by.binding(binding), parentEl));
+    },
+    /**
+     * Get all elements by binding
+     * @param {string} binding
+     * @param {TcElementImpl} parentEl
+     * @returns {Promise<TcElementImpl[]>} the resolved elements by binding
+     */
+    getAllElementsByBinding: function (binding, parentEl) {
+        return __awaiter(this, void 0, void 0, function () {
+            var list;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.getAllElements(protractor_1.by.binding(binding), parentEl)];
+                    case 1:
+                        list = _a.sent();
+                        return [2 /*return*/, this.getElementArray(list)];
+                }
+            });
+        });
     },
     /**
      * Get element by exact binding
      * @param {string} binding
+     * @param {TcElementImpl} parentEl
+     * @returns {TcElementImpl} the resolved element by exact binding
      */
-    getElementByExactBinding: function (binding) {
-        return new tc_element_impl_1.TcElementImpl(protractor_1.element(protractor_1.by.exactBinding(binding)));
+    getElementByExactBinding: function (binding, parentEl) {
+        return new tc_element_impl_1.TcElementImpl(this.getElement(protractor_1.by.exactBinding(binding), parentEl));
+    },
+    /**
+     * Get all elements by exact binding
+     * @param {string} binding
+     * @param {TcElementImpl} parentEl
+     * @returns {Promise<TcElementImpl[]>} the resolved elements by exact binding
+     */
+    getAllElementsByExactBinding: function (binding, parentEl) {
+        return __awaiter(this, void 0, void 0, function () {
+            var list;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.getAllElements(protractor_1.by.exactBinding(binding), parentEl)];
+                    case 1:
+                        list = _a.sent();
+                        return [2 /*return*/, this.getElementArray(list)];
+                }
+            });
+        });
     },
     /**
      * Get element by model
      * @param {string} model
+     * @param {TcElementImpl} parentEl
+     * @returns {TcElementImpl} the resolved element by model
      */
-    getElementByModel: function (model) {
-        return new tc_element_impl_1.TcElementImpl(protractor_1.element(protractor_1.by.model(model)));
+    getElementByModel: function (model, parentEl) {
+        return new tc_element_impl_1.TcElementImpl(this.getElement(protractor_1.by.model(model), parentEl));
+    },
+    /**
+     * Get all elements by model
+     * @param {string} model
+     * @param {TcElementImpl} parentEl
+     * @returns {Promise<TcElementImpl[]>} the resolved elements by model
+     */
+    getAllElementsByModel: function (model, parentEl) {
+        return __awaiter(this, void 0, void 0, function () {
+            var list;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.getAllElements(protractor_1.by.model(model), parentEl)];
+                    case 1:
+                        list = _a.sent();
+                        return [2 /*return*/, this.getElementArray(list)];
+                }
+            });
+        });
+    },
+    /**
+     * Get element by button text
+     * @param {string} text
+     * @param {TcElementImpl} parentEl
+     * @returns {TcElementImpl} the resolved element by button text
+     */
+    getElementByButtonText: function (text, parentEl) {
+        return new tc_element_impl_1.TcElementImpl(this.getElement(protractor_1.by.buttonText(text), parentEl));
+    },
+    /**
+     * Get all elements by button text
+     * @param {string} text
+     * @param {TcElementImpl} parentEl
+     * @returns {Promise<TcElementImpl[]>} the resolved elements by button text
+     */
+    getAllElementsByButtonText: function (text, parentEl) {
+        return __awaiter(this, void 0, void 0, function () {
+            var list;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.getAllElements(protractor_1.by.buttonText(text), parentEl)];
+                    case 1:
+                        list = _a.sent();
+                        return [2 /*return*/, this.getElementArray(list)];
+                }
+            });
+        });
     },
     /**
      * Get element by button containing substring
      * @param {string} text
+     * @param {TcElementImpl} parentEl
+     * @returns {TcElementImpl} the resolved element by partial button text
      */
-    getElementByPartialButtonText: function (text) {
-        return new tc_element_impl_1.TcElementImpl(protractor_1.element(protractor_1.by.partialButtonText(text)));
+    getElementByPartialButtonText: function (text, parentEl) {
+        return new tc_element_impl_1.TcElementImpl(this.getElement(protractor_1.by.partialButtonText(text), parentEl));
+    },
+    /**
+     * Get all elements by partial button text
+     * @param {string} text
+     * @param {TcElementImpl} parentEl
+     * @returns {Promise<TcElementImpl[]>} the resolved elements by partial button text
+     */
+    getAllElementsByPartialButtonText: function (text, parentEl) {
+        return __awaiter(this, void 0, void 0, function () {
+            var list;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.getAllElements(protractor_1.by.partialButtonText(text), parentEl)];
+                    case 1:
+                        list = _a.sent();
+                        return [2 /*return*/, this.getElementArray(list)];
+                }
+            });
+        });
     },
     /**
      * Get element by repeater
      * @param {string} repeater
+     * @param {TcElementImpl} parentEl
+     * @returns {TcElementImpl} the resolved element by repeater
      */
-    getElementByRepeater: function (repeater) {
-        return new tc_element_impl_1.TcElementImpl(protractor_1.element(protractor_1.by.repeater(repeater)));
+    getElementByRepeater: function (repeater, parentEl) {
+        return new tc_element_impl_1.TcElementImpl(this.getElement(protractor_1.by.repeater(repeater), parentEl));
+    },
+    /**
+     * Get all elements by repeater
+     * @param {string} repeater
+     * @param {TcElementImpl} parentEl
+     * @returns {Promise<TcElementImpl[]>} the resolved elements by repeater
+     */
+    getAllElementsByRepeater: function (repeater, parentEl) {
+        return __awaiter(this, void 0, void 0, function () {
+            var list;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.getAllElements(protractor_1.by.repeater(repeater), parentEl)];
+                    case 1:
+                        list = _a.sent();
+                        return [2 /*return*/, this.getElementArray(list)];
+                }
+            });
+        });
     },
     /**
      * Get element by exact repeater
      * @param {string} repeater
+     * @param {TcElementImpl} parentEl
+     * @returns {TcElementImpl} the resolved element by exact repeater
      */
-    getElementByExactRepeater: function (repeater) {
-        return new tc_element_impl_1.TcElementImpl(protractor_1.element(protractor_1.by.exactRepeater(repeater)));
+    getElementByExactRepeater: function (repeater, parentEl) {
+        return new tc_element_impl_1.TcElementImpl(this.getElement(protractor_1.by.exactRepeater(repeater), parentEl));
+    },
+    /**
+     * Get all elements by exact repeater
+     * @param {string} repeater
+     * @param {TcElementImpl} parentEl
+     * @returns {Promise<TcElementImpl[]>} the resolved elements by exact repeater
+     */
+    getAllElementsByExactRepeater: function (repeater, parentEl) {
+        return __awaiter(this, void 0, void 0, function () {
+            var list;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.getAllElements(protractor_1.by.exactRepeater(repeater), parentEl)];
+                    case 1:
+                        list = _a.sent();
+                        return [2 /*return*/, this.getElementArray(list)];
+                }
+            });
+        });
     },
     /**
      * Get element by css containing text
      * @param {string} cssSelector
      * @param {string} text
+     * @param {TcElementImpl} parentEl
+     * @returns {TcElementImpl} the resolved element by css selector and text
      */
-    getElementByCssContainingText: function (cssSelector, text) {
-        return new tc_element_impl_1.TcElementImpl(protractor_1.element(protractor_1.by.cssContainingText(cssSelector, text)));
+    getElementByCssContainingText: function (cssSelector, text, parentEl) {
+        return new tc_element_impl_1.TcElementImpl(this.getElement(protractor_1.by.cssContainingText(cssSelector, text), parentEl));
+    },
+    /**
+     * Get all elements by css containing text
+     * @param {string} cssSelector
+     * @param {string} text
+     * @param {TcElementImpl} parentEl
+     * @returns {Promise<TcElementImpl[]>} the resolved elements by css selector and text
+     */
+    getAllElementsByCssContainingText: function (cssSelector, text, parentEl) {
+        return __awaiter(this, void 0, void 0, function () {
+            var list;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.getAllElements(protractor_1.by.cssContainingText(cssSelector, text), parentEl)];
+                    case 1:
+                        list = _a.sent();
+                        return [2 /*return*/, this.getElementArray(list)];
+                }
+            });
+        });
     },
     /**
      * Get element by options
      * @param {string} options
+     * @param {TcElementImpl} parentEl
+     * @returns {TcElementImpl} the resolved element by options
      */
-    getElementByOptions: function (options) {
-        return new tc_element_impl_1.TcElementImpl(protractor_1.element(protractor_1.by.options(options)));
+    getElementByOptions: function (options, parentEl) {
+        return new tc_element_impl_1.TcElementImpl(this.getElement(protractor_1.by.options(options), parentEl));
+    },
+    /**
+     * Get all elements by options
+     * @param {string} options
+     * @param {TcElementImpl} parentEl
+     * @returns {Promise<TcElementImpl[]>} the resolved elements by options
+     */
+    getAllElementsByOptions: function (options, parentEl) {
+        return __awaiter(this, void 0, void 0, function () {
+            var list;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.getAllElements(protractor_1.by.options(options), parentEl)];
+                    case 1:
+                        list = _a.sent();
+                        return [2 /*return*/, this.getElementArray(list)];
+                }
+            });
+        });
     },
     /**
      * Get element by deep css
      * @param {string} deepCss
+     * @param {TcElementImpl} parentEl
+     * @returns {TcElementImpl} the resolved element by deep css
      */
-    getElementByDeepCss: function (deepCss) {
-        return new tc_element_impl_1.TcElementImpl(protractor_1.element(protractor_1.by.deepCss(deepCss)));
+    getElementByDeepCss: function (deepCss, parentEl) {
+        return new tc_element_impl_1.TcElementImpl(this.getElement(protractor_1.by.deepCss(deepCss), parentEl));
+    },
+    /**
+     * Get all elements by deep css
+     * @param {string} deepCss
+     * @param {TcElementImpl} parentEl
+     * @returns {Promise<TcElementImpl[]>} the resolved elements by deep css
+     */
+    getAllElementsByDeepCss: function (deepCss, parentEl) {
+        return __awaiter(this, void 0, void 0, function () {
+            var list;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.getAllElements(protractor_1.by.deepCss(deepCss), parentEl)];
+                    case 1:
+                        list = _a.sent();
+                        return [2 /*return*/, this.getElementArray(list)];
+                }
+            });
+        });
     },
     /**
      * Get element by xPath
      * @param {string} xPath
+     * @param {TcElementImpl} parentEl
+     * @returns {TcElementImpl} the resolved element by xpath
      */
-    getElementByXPath: function (xPath) {
-        return new tc_element_impl_1.TcElementImpl(protractor_1.element(protractor_1.by.xpath(xPath)));
+    getElementByXPath: function (xPath, parentEl) {
+        return new tc_element_impl_1.TcElementImpl(this.getElement(protractor_1.by.xpath(xPath), parentEl));
+    },
+    /**
+     * Get all elements by xPath
+     * @param {string} xPath
+     * @param {TcElementImpl} parentEl
+     * @returns {Promise<TcElementImpl[]>} the resolved elements by xpath
+     */
+    getAllElementsByXPath: function (xPath, parentEl) {
+        return __awaiter(this, void 0, void 0, function () {
+            var list;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.getAllElements(protractor_1.by.xpath(xPath), parentEl)];
+                    case 1:
+                        list = _a.sent();
+                        return [2 /*return*/, this.getElementArray(list)];
+                }
+            });
+        });
     },
     /**
      * Get element containing text
      * @param {string} text
+     * @param {TcElementImpl} parentEl
+     * @returns {TcElementImpl} the resolved element containing text
      */
-    getElementContainingText: function (text) {
+    getElementContainingText: function (text, parentEl) {
         var xPath = "//*[contains(text(),\"" + text + "\")]";
-        return this.getElementByXPath(xPath);
+        return this.getElementByXPath(xPath, parentEl);
     },
     /**
      * Get html tag element containing text
      * @param {string} tag
      * @param {string} text
+     * @param {TcElementImpl} parentEl
+     * @returns {TcElementImpl} the resolved element containing text
      */
-    getTagElementContainingText: function (tag, text) {
+    getTagElementContainingText: function (tag, text, parentEl) {
         var xPath = "//" + tag + "[contains(text(),\"" + text + "\")]";
-        return this.getElementByXPath(xPath);
+        return this.getElementByXPath(xPath, parentEl);
     },
     /**
      * Get input element by type
      * @param {string} type
+     * @param {TcElementImpl} parentEl
+     * @returns {TcElementImpl} the resolved element by type
      */
-    getInputElementByType: function (type) {
+    getInputElementByType: function (type, parentEl) {
         var xPath = "//input[@type=\"" + type + "\"]";
-        return this.getElementByXPath(xPath);
+        return this.getElementByXPath(xPath, parentEl);
     },
     /**
      * Get TcElement Array
      * @param {ElementArrayFinder} elementArray
+     * @returns {TcElementImpl[]} the resolved elements as array
      */
     getElementArray: function (elementArray) {
         var tcElementArray = [];
         for (var i = 0; i < elementArray.length; i++) {
-            tcElementArray[i] = elementArray[i];
+            tcElementArray[i] = new tc_element_impl_1.TcElementImpl(elementArray[i]);
         }
         return tcElementArray;
     },
+    /**
+     * Get element by locator
+     * @param {Locator} locator
+     * @param {TcElementImpl} parentEl
+     */
+    getElement: function (locator, parentEl) {
+        if (parentEl) {
+            return parentEl.getElement().element(locator);
+        }
+        return protractor_1.element(locator);
+    },
+    /**
+     * Get all elements by locator
+     * @param {Locator} locator
+     * @param {TcElementImpl} parentEl
+     */
+    getAllElements: function (locator, parentEl) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                if (parentEl) {
+                    return [2 /*return*/, parentEl.getElement().all(locator)];
+                }
+                return [2 /*return*/, protractor_1.element.all(locator)];
+            });
+        });
+    },
 };
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZWxlbWVudC1oZWxwZXIuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi8uLi8uLi9zcmMvdXRpbHMvZWxlbWVudC1oZWxwZXIudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7OztBQUFBLHlDQUE2RDtBQUM3RCxzREFBbUQ7QUFFdEMsUUFBQSxhQUFhLEdBQUc7SUFDM0I7Ozs7T0FJRztJQUNILHFCQUFxQixFQUFyQixVQUFzQixTQUFpQixFQUFFLFFBQXdCO1FBQy9ELElBQUksUUFBUSxFQUFFO1lBQ1osSUFBTSxFQUFFLEdBQUcsUUFBUSxDQUFDLFVBQVUsRUFBRSxDQUFDO1lBQ2pDLE9BQU8sSUFBSSwrQkFBYSxDQUFDLEVBQUUsQ0FBQyxPQUFPLENBQUMsZUFBRSxDQUFDLFNBQVMsQ0FBQyxTQUFTLENBQUMsQ0FBQyxDQUFDLENBQUM7U0FDL0Q7UUFDRCxPQUFPLElBQUksK0JBQWEsQ0FBQyxvQkFBTyxDQUFDLGVBQUUsQ0FBQyxTQUFTLENBQUMsU0FBUyxDQUFDLENBQUMsQ0FBQyxDQUFDO0lBQzdELENBQUM7SUFFRDs7O09BR0c7SUFDRyx5QkFBeUIsWUFBQyxTQUFTOzs7Ozs0QkFDMUIscUJBQU0sb0JBQU8sQ0FBQyxHQUFHLENBQUMsZUFBRSxDQUFDLFNBQVMsQ0FBQyxTQUFTLENBQUMsQ0FBQyxFQUFBOzt3QkFBakQsSUFBSSxHQUFHLFNBQTBDO3dCQUN2RCxzQkFBTyxJQUFJLENBQUMsZUFBZSxDQUFDLElBQUksQ0FBQyxFQUFDOzs7O0tBQ25DO0lBRUQ7OztPQUdHO0lBQ0csbUJBQW1CLFlBQUMsT0FBTzs7Ozs7NEJBQ2xCLHFCQUFNLG9CQUFPLENBQUMsR0FBRyxDQUFDLGVBQUUsQ0FBQyxHQUFHLENBQUMsT0FBTyxDQUFDLENBQUMsRUFBQTs7d0JBQXpDLElBQUksR0FBRyxTQUFrQzt3QkFDL0Msc0JBQU8sSUFBSSxDQUFDLGVBQWUsQ0FBQyxJQUFJLENBQUMsRUFB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
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZWxlbWVudC1oZWxwZXIuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi8uLi8uLi9zcmMvdXRpbHMvZWxlbWVudC1oZWxwZXIudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7OztBQUFBLHlDQU1vQjtBQUNwQixzREFBbUQ7QUFFdEMsUUFBQSxhQUFhLEdBQUc7SUFDM0I7Ozs7O09BS0c7SUFDSCxxQkFBcUIsRUFBckIsVUFDRSxTQUFpQixFQUNqQixRQUF3QjtRQUV4QixPQUFPLElBQUksK0JBQWEsQ0FDdEIsSUFBSSxDQUFDLFVBQVUsQ0FBQyxlQUFFLENBQUMsU0FBUyxDQUFDLFNBQVMsQ0FBQyxFQUFFLFFBQVEsQ0FBQyxDQUNuRCxDQUFDO0lBQ0osQ0FBQztJQUVEOzs7OztPQUtHO0lBQ0cseUJBQXlCLEVBQS9CLFVBQ0UsU0FBaUIsRUFDakIsUUFBd0I7Ozs7OzRCQUVYLHFCQUFNLElBQUksQ0FBQyxjQUFjLENBQUMsZUFBRSxDQUFDLFNBQVMsQ0FBQyxTQUFTLENBQUMsRUFBRSxRQUFRLENBQUMsRUFBQTs7d0JBQW5FLElBQUksR0FBRyxTQUE0RDt3QkFDekUsc0JBQU8sSUFBSSxDQUFDLGVBQWUsQ0FBQyxJQUFJLENBQUMsRUFBQzs7OztLQUNuQztJQUVEOzs7OztPQUtHO0lBQ0gsZUFBZSxFQUFmLFVBQWdCLEdBQUcsRUFBRSxRQUF3QjtRQUMzQyxPQUFPLElBQUksK0JBQWEsQ0FBQyxJQUFJLENBQUMsVUFBVSxDQUFDLGVBQUUsQ0FBQyxHQUFHLENBQUMsR0FBRyxDQUFDLEVBQUUsUUFBUSxDQUFDLENBQUMsQ0FBQztJQUNuRSxDQUFDO0lBRUQ7Ozs7O09BS0c7SUFDRyxtQkFBbUIsRUFBekIsVUFDRSxPQUFPLEVBQ1AsUUFBd0I7Ozs7OzRCQUVYLHFCQUFNLElBQUksQ0FBQyxjQUFjLENBQUMsZUFBRSxDQUFDLEdBQUcsQ0FBQyxPQUFPLENBQUMsRUFBRSxRQUFRLENB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
