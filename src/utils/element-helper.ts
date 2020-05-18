@@ -523,6 +523,22 @@ export const ElementHelper = {
   },
 
   /**
+   * Get html tag element matching text
+   * @param {string} tag
+   * @param {string} text
+   * @param {TcElementImpl} parentEl
+   * @returns {TcElementImpl} the resolved element matching text
+   */
+  getTagElementMatchingText(
+    tag,
+    text,
+    parentEl?: TcElementImpl
+  ): TcElementImpl {
+    const xPath = `//${tag}[(text()="${text}")]`;
+    return this.getElementByXPath(xPath, parentEl);
+  },
+
+  /**
    * Get input element by type
    * @param {string} type
    * @param {TcElementImpl} parentEl

@@ -285,6 +285,14 @@ export declare const ElementHelper: {
      */
     getTagElementContainingText(tag: any, text: any, parentEl?: TcElementImpl): TcElementImpl;
     /**
+     * Get html tag element matching text
+     * @param {string} tag
+     * @param {string} text
+     * @param {TcElementImpl} parentEl
+     * @returns {TcElementImpl} the resolved element matching text
+     */
+    getTagElementMatchingText(tag: any, text: any, parentEl?: TcElementImpl): TcElementImpl;
+    /**
      * Get input element by type
      * @param {string} type
      * @param {TcElementImpl} parentEl

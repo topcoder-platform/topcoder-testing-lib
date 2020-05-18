@@ -370,4 +370,13 @@ export const BrowserHelper = {
       await browser.wait(func());
     }
   },
+
+  /**
+   * Executes the given script with the provided arguments
+   * @param {string} script
+   * @param {TcElementImpl} tcElement
+   */
+  async executeScript(script: string, tcElement: TcElementImpl) {
+    return browser.executeScript(script, tcElement.element.getWebElement());
+  }
 };

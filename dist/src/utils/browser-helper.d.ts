@@ -172,4 +172,10 @@ export declare const BrowserHelper: {
      * @param  {string} message
      */
     waitUntil(func: () => any, timeout?: number, message?: string): Promise<void>;
+    /**
+     * Executes the given script with the provided arguments
+     * @param {string} script
+     * @param {TcElementImpl} tcElement
+     */
+    executeScript(script: string, tcElement: TcElementImpl): Promise<unknown>;
 };
