@@ -6,7 +6,7 @@
   "types": "dist/src/index.d.ts",
   "dependencies": {
     "@types/node": "^12.7.8",
-    "jsdom": "^15.1.1",
+    "jsdom": "^16.5.0",
     "protractor": "^5.4.2",
     "typescript": "^3.5.3",
     "winston": "^3.2.1"
